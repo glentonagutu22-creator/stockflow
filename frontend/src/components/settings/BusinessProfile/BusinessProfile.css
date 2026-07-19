@@ -1,0 +1,151 @@
+.business-profile{
+    background:#ffffff;
+    border:1px solid #e2e8f0;
+    border-radius:18px;
+    padding:32px;
+    box-shadow:0 8px 24px rgba(15,23,42,.05);
+    transition:.3s;
+}
+
+.business-profile:hover{
+    box-shadow:0 16px 40px rgba(15,23,42,.08);
+}
+
+/* ===========================
+   SECTION HEADER
+=========================== */
+
+.section-header{
+    margin-bottom:28px;
+}
+
+.section-header h2{
+    margin:0;
+    color:#0f172a;
+    font-size:24px;
+    font-weight:700;
+}
+
+.section-header p{
+    margin-top:8px;
+    color:#64748b;
+    font-size:15px;
+    line-height:1.6;
+}
+
+/* ===========================
+   GRID
+=========================== */
+
+.settings-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:22px;
+}
+
+/* ===========================
+   INPUT GROUP
+=========================== */
+
+.settings-input{
+    display:flex;
+    flex-direction:column;
+}
+
+.settings-input label{
+    display:flex;
+    align-items:center;
+    gap:8px;
+
+    margin-bottom:10px;
+
+    font-size:14px;
+    font-weight:600;
+
+    color:#334155;
+}
+
+.settings-input label svg{
+    color:#2563eb;
+    font-size:18px;
+}
+
+.settings-input input{
+    width:100%;
+
+    padding:13px 16px;
+
+    border:1px solid #dbe3ef;
+    border-radius:10px;
+
+    font-size:15px;
+
+    outline:none;
+
+    transition:.25s;
+}
+
+.settings-input input:focus{
+    border-color:#2563eb;
+    box-shadow:0 0 0 3px rgba(37,99,235,.12);
+}
+
+/* ===========================
+   BUTTON
+=========================== */
+
+.save-settings-btn{
+    margin-top:30px;
+
+    background:#2563eb;
+    color:#fff;
+
+    border:none;
+    border-radius:10px;
+
+    padding:14px 28px;
+
+    font-size:15px;
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.25s;
+}
+
+.save-settings-btn:hover{
+    background:#1d4ed8;
+    transform:translateY(-2px);
+}
+
+.save-settings-btn:active{
+    transform:translateY(0);
+}
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+
+@media(max-width:900px){
+
+.settings-grid{
+    grid-template-columns:1fr;
+}
+
+}
+
+@media(max-width:768px){
+
+.business-profile{
+    padding:22px;
+}
+
+.section-header h2{
+    font-size:22px;
+}
+
+.save-settings-btn{
+    width:100%;
+}
+
+}

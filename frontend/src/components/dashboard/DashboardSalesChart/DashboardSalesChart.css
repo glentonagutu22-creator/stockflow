@@ -1,0 +1,113 @@
+.dashboard-sales-chart {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+  padding: 24px;
+
+  display: flex;
+  flex-direction: column;
+
+  min-height: 420px;
+
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05);
+
+  transition: all 0.3s ease;
+}
+
+.dashboard-sales-chart:hover {
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
+}
+
+/* ==========================
+   HEADER
+========================== */
+
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+
+.chart-header h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.chart-header p {
+  margin-top: 6px;
+  color: #64748b;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* ==========================
+   CHART
+========================== */
+
+.dashboard-sales-chart .recharts-responsive-container {
+  flex: 1;
+}
+
+/* Remove ugly chart outlines */
+
+.recharts-wrapper *:focus {
+  outline: none;
+}
+
+/* ==========================
+   EMPTY STATE
+========================== */
+
+.chart-empty {
+  flex: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #94a3b8;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+/* ==========================
+   TABLET
+========================== */
+
+@media (max-width: 992px) {
+
+  .dashboard-sales-chart {
+    min-height: 380px;
+    padding: 20px;
+  }
+
+}
+
+/* ==========================
+   MOBILE
+========================== */
+
+@media (max-width: 768px) {
+
+  .dashboard-sales-chart {
+    min-height: 340px;
+    padding: 18px;
+  }
+
+  .chart-header {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .chart-header h2 {
+    font-size: 18px;
+  }
+
+  .chart-header p {
+    font-size: 13px;
+  }
+
+}

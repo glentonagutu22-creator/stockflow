@@ -1,0 +1,85 @@
+.dashboard-navigation {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin: 10px 0 28px;
+}
+
+/* ==========================
+   QUICK ACTION BUTTON
+========================== */
+
+.nav-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  min-height: 48px;
+  padding: 0 18px;
+
+  background: #2563eb;
+  color: #ffffff;
+
+  border: none;
+  border-radius: 14px;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all 0.25s ease;
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.18);
+}
+
+.nav-button:hover {
+  background: #1d4ed8;
+  transform: translateY(-3px);
+  box-shadow: 0 14px 28px rgba(37, 99, 235, 0.25);
+}
+
+.nav-button:active {
+  transform: scale(0.98);
+}
+
+.nav-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+
+/* ==========================
+   TABLET
+========================== */
+
+@media (max-width: 992px) {
+
+  .dashboard-navigation {
+    gap: 12px;
+  }
+
+  .nav-button {
+    flex: 1 1 calc(50% - 12px);
+  }
+
+}
+
+/* ==========================
+   PHONE
+========================== */
+
+@media (max-width: 768px) {
+
+  .dashboard-navigation {
+    flex-direction: column;
+  }
+
+  .nav-button {
+    width: 100%;
+    justify-content: flex-start;
+    padding: 14px 18px;
+  }
+
+}

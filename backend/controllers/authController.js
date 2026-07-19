@@ -1,5 +1,5 @@
-import { registerUser } from "../services/authService.js";
-import { registerSchema } from "../validators/authValidator.js";
+import { registerUser, loginUser } from "../services/authService.js";
+import { registerSchema, loginSchema } from "../validators/authValidator.js";
 import ApiResponse from "../utils/ApiResponse.js";
 
 const register = async (req, res, next) => {
@@ -20,5 +20,29 @@ const register = async (req, res, next) => {
     next(error);
   }
 };
+const login = async (req, res, next) => {
+  try {
+    const validatedData = loginSchema.parse(req.body);
 
-export { register };
+    const result = await loginUser(validatedData);
+
+    return res.status(200).json(
+      ApiResponse.success(
+        "Login successful",
+        result
+      )
+    );
+  } catch (error) {
+    next(error);
+  }
+};
+const getProfile = async (req, res) => {
+  return res.status(200).json(
+    ApiResponse.success(
+      "Profile retrieved successfully",
+      req.user
+    )
+  );
+};
+
+export { register, login, getProfile };

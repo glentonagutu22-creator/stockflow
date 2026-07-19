@@ -1,0 +1,29 @@
+.category-toolbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+    gap:15px;
+}
+
+.category-toolbar input{
+    flex:1;
+    padding:10px 14px;
+    border:1px solid #ddd;
+    border-radius:8px;
+    outline:none;
+}
+
+.category-toolbar button{
+    padding:10px 18px;
+    border:none;
+    border-radius:8px;
+    background:#2563eb;
+    color:white;
+    cursor:pointer;
+    font-weight:600;
+}
+
+.category-toolbar button:hover{
+    opacity:.9;
+}

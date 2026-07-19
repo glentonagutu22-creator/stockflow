@@ -1,13 +1,6 @@
-import Counter from "../models/Counter.js";
+import generateSequence from "./sequences/generateSequence.js";
 
-const generateEmployeeId = async () => {
-  const counter = await Counter.findOneAndUpdate(
-    { name: "employeeId" },
-    { $inc: { sequence: 1 } },
-    { new: true, upsert: true }
-  );
-
-  return `SF-${counter.sequence.toString().padStart(4, "0")}`;
-};
+const generateEmployeeId = () =>
+  generateSequence("employeeId", "SF", 4);
 
 export default generateEmployeeId;

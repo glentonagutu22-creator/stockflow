@@ -1,0 +1,89 @@
+.purchase-modal-overlay {
+
+  position: fixed;
+
+  inset: 0;
+
+  background: rgba(0,0,0,0.45);
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  z-index: 1000;
+
+  padding: 20px;
+
+}
+
+
+
+.purchase-modal {
+
+  background: white;
+
+  width: 900px;
+
+  max-height: 90vh;
+
+  overflow-y: auto;
+
+  border-radius: 12px;
+
+  position: relative;
+
+  padding: 20px;
+
+}
+
+
+
+.purchase-modal-close {
+
+  position: absolute;
+
+  right: 15px;
+
+  top: 15px;
+
+  width: 35px;
+
+  height: 35px;
+
+  border-radius: 50%;
+
+  border: none;
+
+  background: #ef4444;
+
+  color: white;
+
+  font-size: 22px;
+
+  cursor: pointer;
+
+}
+
+
+
+.purchase-modal-close:hover {
+
+  background: #dc2626;
+
+}
+
+
+
+@media(max-width:700px){
+
+  .purchase-modal {
+
+    width: 100%;
+
+    padding: 15px;
+
+  }
+
+}

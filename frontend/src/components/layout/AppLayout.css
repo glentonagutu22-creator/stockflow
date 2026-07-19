@@ -1,0 +1,43 @@
+.app-layout{
+    display:flex;
+    min-height:100vh;
+    background:#f8fafc;
+}
+
+.main-layout{
+    flex:1;
+    margin-left:270px;
+    transition:margin-left .35s ease;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+}
+
+.main-layout.collapsed{
+    margin-left:82px;
+}
+
+.page-content{
+    flex:1;
+    padding:30px;
+    background:#f8fafc;
+    overflow-x:auto;
+}
+
+/* Mobile */
+
+@media(max-width:900px){
+
+.main-layout{
+    margin-left:0;
+}
+
+.main-layout.collapsed{
+    margin-left:0;
+}
+
+.page-content{
+    padding:20px;
+}
+
+}

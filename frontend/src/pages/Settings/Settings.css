@@ -1,0 +1,21 @@
+.settings-page {
+  padding: 30px;
+}
+
+.settings-card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 30px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05);
+}
+
+.settings-card h1 {
+  margin: 0 0 12px;
+  color: #0f172a;
+}
+
+.settings-card p {
+  color: #64748b;
+  font-size: 15px;
+}

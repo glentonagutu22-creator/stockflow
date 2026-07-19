@@ -1,0 +1,23 @@
+.dashboard-summary{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+}
+
+.summary-card{
+    background:#fff;
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0 2px 10px rgba(0,0,0,.08);
+}
+
+.summary-card h4{
+    color:#666;
+    margin-bottom:12px;
+    font-size:15px;
+}
+
+.summary-card h2{
+    color:#2563eb;
+    font-size:28px;
+}

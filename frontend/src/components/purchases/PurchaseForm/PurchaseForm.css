@@ -1,0 +1,176 @@
+.purchase-form {
+  background: white;
+  padding: 25px;
+  border-radius: 10px;
+  width: 100%;
+}
+
+.purchase-form h2 {
+  margin-bottom: 20px;
+  font-size: 22px;
+}
+
+.purchase-form h3 {
+  margin: 20px 0 10px;
+  font-size: 16px;
+}
+
+
+.purchase-form select,
+.purchase-form input,
+.purchase-form textarea {
+
+  width: 100%;
+  padding: 12px;
+
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+
+  font-size: 14px;
+
+  outline: none;
+
+  margin-bottom: 12px;
+
+}
+
+
+.purchase-form select:focus,
+.purchase-form input:focus,
+.purchase-form textarea:focus {
+
+  border-color: #2563eb;
+
+}
+
+
+.purchase-form textarea {
+
+  min-height: 90px;
+  resize: vertical;
+
+}
+
+
+/* Product rows */
+
+.purchase-item-row {
+
+  display: grid;
+
+  grid-template-columns:
+    2fr
+    0.7fr
+    1fr
+    0.8fr
+    auto;
+
+  gap: 10px;
+
+  align-items: center;
+
+  margin-bottom: 12px;
+
+}
+
+
+.purchase-item-row span {
+
+  background: #f8fafc;
+
+  padding: 10px;
+
+  border-radius: 6px;
+
+  font-weight: 600;
+
+  text-align: center;
+
+}
+
+
+
+/* Buttons */
+
+.purchase-form button {
+
+  border: none;
+
+  padding: 11px 18px;
+
+  border-radius: 7px;
+
+  cursor: pointer;
+
+  background: #2563eb;
+
+  color: white;
+
+  font-size: 14px;
+
+  margin-top: 10px;
+
+}
+
+
+.purchase-form button:hover {
+
+  background: #1d4ed8;
+
+}
+
+
+.purchase-item-row button {
+
+  background: #dc2626;
+
+  padding: 9px 12px;
+
+}
+
+
+.purchase-item-row button:hover {
+
+  background: #b91c1c;
+
+}
+
+
+/* Total section */
+
+.purchase-form h3:last-of-type {
+
+  background: #f1f5f9;
+
+  padding: 15px;
+
+  border-radius: 8px;
+
+  text-align: right;
+
+  margin-top: 20px;
+
+}
+
+
+
+/* Responsive */
+
+@media (max-width: 900px) {
+
+
+  .purchase-item-row {
+
+    grid-template-columns: 1fr;
+
+  }
+
+
+  .purchase-item-row span {
+
+    text-align: left;
+
+  }
+
+
+}

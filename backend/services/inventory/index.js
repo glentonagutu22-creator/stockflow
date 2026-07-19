@@ -1,0 +1,1 @@
+export { default as updateInventory } from "./updateInventoryService.js";

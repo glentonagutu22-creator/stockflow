@@ -1,7 +1,7 @@
 const errorMiddleware = (err, req, res, next) => {
   console.error(err);
 
-  // Handle Zod validation errors
+  // Zod validation
   if (err.name === "ZodError") {
     return res.status(400).json({
       success: false,
@@ -10,7 +10,7 @@ const errorMiddleware = (err, req, res, next) => {
     });
   }
 
-  res.status(500).json({
+  res.status(err.statusCode || 500).json({
     success: false,
     message: err.message || "Internal Server Error",
   });

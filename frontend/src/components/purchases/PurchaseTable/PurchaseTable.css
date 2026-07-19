@@ -1,0 +1,94 @@
+.purchase-table-container {
+  width: 100%;
+  overflow-x: auto;
+  margin-top: 20px;
+}
+
+.purchase-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+}
+
+.purchase-table th,
+.purchase-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid #e5e7eb;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.purchase-table th {
+  background: #f8fafc;
+  font-weight: 600;
+}
+
+.purchase-table tbody tr:hover {
+  background: #f9fafb;
+}
+
+.purchase-table-empty {
+  text-align: center;
+  padding: 40px;
+  background: white;
+  border-radius: 8px;
+}
+
+.actions-column {
+  width: 170px;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+}
+
+.edit-btn,
+.delete-btn {
+  border: none;
+  padding: 7px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.edit-btn {
+  background: #2563eb;
+  color: white;
+}
+
+.edit-btn:hover {
+  background: #1d4ed8;
+}
+
+.delete-btn {
+  background: #dc2626;
+  color: white;
+}
+
+.delete-btn:hover {
+  background: #b91c1c;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.status-badge.pending {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.status-badge.received {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.status-badge.cancelled {
+  background: #fee2e2;
+  color: #991b1b;
+}

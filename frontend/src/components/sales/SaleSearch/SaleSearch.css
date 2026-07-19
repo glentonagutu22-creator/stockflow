@@ -1,0 +1,16 @@
+.sale-search {
+  margin-bottom: 20px;
+}
+
+.sale-search input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #dcdcdc;
+  border-radius: 8px;
+  font-size: 15px;
+  outline: none;
+}
+
+.sale-search input:focus {
+  border-color: #2563eb;
+}

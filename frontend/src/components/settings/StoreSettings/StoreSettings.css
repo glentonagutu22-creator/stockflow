@@ -1,0 +1,51 @@
+.store-settings{
+    margin-top:30px;
+    background:#fff;
+    border:1px solid #e2e8f0;
+    border-radius:18px;
+    padding:32px;
+    box-shadow:0 8px 24px rgba(15,23,42,.05);
+    transition:.3s;
+}
+
+.store-settings:hover{
+    box-shadow:0 16px 40px rgba(15,23,42,.08);
+}
+
+.store-settings select,
+.store-settings input{
+    width:100%;
+    padding:13px 16px;
+    border:1px solid #dbe3ef;
+    border-radius:10px;
+    font-size:15px;
+    outline:none;
+    transition:.25s;
+    background:#fff;
+}
+
+.store-settings select:focus,
+.store-settings input:focus{
+    border-color:#2563eb;
+    box-shadow:0 0 0 3px rgba(37,99,235,.12);
+}
+
+.full-width{
+    grid-column:1 / -1;
+}
+
+@media(max-width:900px){
+
+.full-width{
+    grid-column:auto;
+}
+
+}
+
+@media(max-width:768px){
+
+.store-settings{
+    padding:22px;
+}
+
+}
