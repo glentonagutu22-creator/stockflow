@@ -6,9 +6,9 @@ import {
   deleteSupplier,
 } from "../../services/supplierService";
 
-import SupplierToolbar from "../../components/suppliers/SupplierToolbar/SupplierToolbar";
-import SupplierTable from "../../components/suppliers/SupplierTable/SupplierTable";
-import SupplierForm from "../../components/suppliers/SupplierForm/SupplierForm";
+import SupplierToolbar from "../../components/Suppliers/SupplierToolbar/SupplierToolbar";
+import SupplierTable from "../../components/Suppliers/SupplierTable/SupplierTable";
+import SupplierForm from "../../components/Suppliers/SupplierForm/SupplierForm";
 
 import Pagination from "../../components/Pagination/Pagination";
 import Modal from "../../components/common/Modal/Modal";
