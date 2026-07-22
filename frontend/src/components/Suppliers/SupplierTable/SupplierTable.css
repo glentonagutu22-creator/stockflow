@@ -1,61 +1,175 @@
-.supplier-table-wrapper{
-    overflow-x:auto;
-    background:white;
-    border-radius:10px;
-    box-shadow:0 2px 10px rgba(0,0,0,.08);
+.supplier-table-wrapper {
+  width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
-.supplier-table{
-    width:100%;
-    border-collapse:collapse;
+
+.supplier-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  background: white;
 }
 
-.supplier-table th,
-.supplier-table td{
-    padding:14px;
-    border-bottom:1px solid #eee;
-    text-align:left;
+
+/* Header */
+
+.supplier-table th {
+  padding: 8px 6px;
+  text-align: left;
+  font-size: 12px;
+  font-weight: 600;
+  color: #475569;
+  background: #f8fafc;
+  border-bottom: 1px solid #e5e7eb;
 }
 
-.supplier-table th{
-    background:#f8fafc;
+
+/* Body */
+
+.supplier-table td {
+  padding: 8px 6px;
+  font-size: 12px;
+  color: #334155;
+  border-bottom: 1px solid #e5e7eb;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.status{
-    padding:4px 10px;
-    border-radius:20px;
-    color:white;
-    font-size:13px;
+
+/* Column sizes */
+
+.supplier-table th:nth-child(1),
+.supplier-table td:nth-child(1) {
+  width: 9%;
 }
 
-.active{
-    background:#16a34a;
+
+.supplier-table th:nth-child(2),
+.supplier-table td:nth-child(2) {
+  width: 14%;
 }
 
-.inactive{
-    background:#dc2626;
+
+.supplier-table th:nth-child(3),
+.supplier-table td:nth-child(3) {
+  width: 14%;
 }
 
-.edit-btn{
-    margin-right:8px;
-    border:none;
-    padding:8px 12px;
-    border-radius:6px;
-    cursor:pointer;
-    background:#2563eb;
-    color:white;
+
+.supplier-table th:nth-child(4),
+.supplier-table td:nth-child(4) {
+  width: 11%;
 }
 
-.delete-btn{
-    border:none;
-    padding:8px 12px;
-    border-radius:6px;
-    cursor:pointer;
-    background:#dc2626;
-    color:white;
+
+.supplier-table th:nth-child(5),
+.supplier-table td:nth-child(5) {
+  width: 13%;
 }
 
-.table-message{
-    text-align:center;
-    padding:40px;
+
+.supplier-table th:nth-child(6),
+.supplier-table td:nth-child(6) {
+  width: 9%;
+}
+
+
+.supplier-table th:nth-child(7),
+.supplier-table td:nth-child(7) {
+  width: 10%;
+}
+
+
+.supplier-table th:nth-child(8),
+.supplier-table td:nth-child(8) {
+  width: 10%;
+}
+
+
+
+/* Hover effect */
+
+.supplier-table tbody tr:hover {
+  background: #f8fafc;
+}
+
+
+
+/* Status badge */
+
+.status {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 14px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+
+.status.active {
+  background: #dcfce7;
+  color: #166534;
+}
+
+
+.status.inactive {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+
+
+/* Action buttons */
+
+.edit-btn,
+.delete-btn {
+
+  padding: 5px 7px;
+
+  border: none;
+
+  border-radius: 6px;
+
+  font-size: 11px;
+
+  cursor: pointer;
+
+  margin-right: 3px;
+
+}
+
+
+.edit-btn {
+
+  background: #dbeafe;
+
+  color: #2563eb;
+
+}
+
+
+.delete-btn {
+
+  background: #fee2e2;
+
+  color: #dc2626;
+
+}
+
+
+
+/* Loading / Empty messages */
+
+.table-message {
+
+  padding:20px;
+
+  text-align:center;
+
+  color:#64748b;
+
 }

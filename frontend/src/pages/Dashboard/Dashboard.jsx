@@ -16,12 +16,12 @@ import "./Dashboard.css";
 const Dashboard = () => {
   const [stats, setStats] = useState({
     totalProducts: 0,
-    lowStock: 0,
-    todaysSales: 0,
+    todaySales: 0,
     todayRevenue: 0,
     totalRevenue: 0,
+    lowStockProducts: 0,
     recentSales: [],
-    lowStockProducts: [],
+    lowStockProductsList: [],
   });
 
   const [chartData, setChartData] = useState([]);
@@ -35,13 +35,15 @@ const Dashboard = () => {
           getSalesChartData(),
         ]);
 
-        setStats(statsData);
+        setStats({
+          ...statsData,
+          lowStockProductsList:
+            statsData.lowStockProducts || [],
+        });
+
         setChartData(salesChart);
       } catch (error) {
-        console.error(
-          "Failed to fetch dashboard data:",
-          error
-        );
+        console.error(error);
       } finally {
         setLoading(false);
       }
@@ -53,7 +55,7 @@ const Dashboard = () => {
   if (loading) {
     return (
       <div className="dashboard-loading">
-        Loading dashboard...
+        Loading Dashboard...
       </div>
     );
   }
@@ -61,56 +63,44 @@ const Dashboard = () => {
   return (
     <div className="dashboard">
 
-      {/* Header */}
-
       <div className="dashboard-header">
 
         <div>
+
+          <span className="dashboard-badge">
+            StockFlow Analytics
+          </span>
+
           <h1>Dashboard</h1>
 
           <p>
-            Welcome back! Here's what's happening
-            in your store today.
+            Monitor sales, inventory and business
+            performance in real time.
           </p>
+
         </div>
 
         <DashboardNavigation />
 
       </div>
 
-      {/* Statistics */}
-
       <DashboardStats stats={stats} />
-
-      {/* Main Content */}
 
       <div className="dashboard-content">
 
-        {/* Left */}
+  <DashboardSalesChart
+    data={chartData}
+  />
 
-        <div className="dashboard-main">
+  <DashboardRecentSales
+    sales={stats.recentSales}
+  />
 
-          <DashboardSalesChart
-            data={chartData}
-          />
+  <DashboardLowStock
+    products={stats.lowStockProductsList}
+  />
 
-          <DashboardRecentSales
-            sales={stats.recentSales}
-          />
-
-        </div>
-
-        {/* Right */}
-
-        <div className="dashboard-side">
-
-          <DashboardLowStock
-            products={stats.lowStockProducts}
-          />
-
-        </div>
-
-      </div>
+</div>
 
     </div>
   );

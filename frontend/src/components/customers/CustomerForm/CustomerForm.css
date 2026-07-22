@@ -1,54 +1,134 @@
 .customer-form{
-    display:flex;
-    flex-direction:column;
-    gap:20px;
-    width:100%;
+
+display:flex;
+
+flex-direction:column;
+
+gap:20px;
+
+padding:10px;
+
 }
+
+
 
 .customer-form h2{
-    margin:0;
-    font-size:22px;
+
+margin:0;
+
+font-size:24px;
+
+color:#111827;
+
 }
 
+
+
 .customer-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:15px;
+
+display:grid;
+
+grid-template-columns:repeat(2,1fr);
+
+gap:16px;
+
 }
+
+
 
 .customer-form input,
 .customer-form select,
 .customer-form textarea{
-    padding:12px;
-    border:1px solid #d1d5db;
-    border-radius:8px;
-    font-size:14px;
-    outline:none;
+
+
+width:100%;
+
+padding:13px 14px;
+
+border:1px solid #D1D5DB;
+
+border-radius:12px;
+
+font-size:14px;
+
+outline:none;
+
+box-sizing:border-box;
+
+transition:.2s;
+
 }
 
-.customer-form textarea{
-    min-height:100px;
-    resize:vertical;
-}
+
 
 .customer-form input:focus,
 .customer-form select:focus,
 .customer-form textarea:focus{
-    border-color:#2563eb;
+
+border-color:#2563EB;
+
+box-shadow:
+0 0 0 4px rgba(37,99,235,.1);
+
 }
+
+
+
+.customer-form textarea{
+
+height:100px;
+
+resize:none;
+
+}
+
+
 
 .customer-form button{
-    align-self:flex-end;
-    background:#2563eb;
-    color:#fff;
-    border:none;
-    padding:12px 24px;
-    border-radius:8px;
-    cursor:pointer;
-    font-size:15px;
-    font-weight:600;
+
+height:50px;
+
+border:none;
+
+border-radius:12px;
+
+background:#2563EB;
+
+color:white;
+
+font-weight:700;
+
+font-size:15px;
+
+cursor:pointer;
+
+transition:.25s;
+
 }
 
+
+
 .customer-form button:hover{
-    background:#1d4ed8;
+
+background:#1D4ED8;
+
+}
+
+
+
+@media(max-width:768px){
+
+.customer-grid{
+
+grid-template-columns:1fr;
+
+}
+
+
+.customer-form h2{
+
+font-size:20px;
+
+}
+
 }

@@ -101,14 +101,28 @@ export const getSalesReport = async () => {
   let totalItemsSold = 0;
 
   sales.forEach((sale) => {
-    totalRevenue += sale.totalAmount;
+    totalRevenue += Number(sale.totalAmount) || 0;
 
     sale.items.forEach((item) => {
-      totalItemsSold += item.quantity;
+      totalItemsSold += Number(item.quantity) || 0;
 
-      totalProfit +=
-        (item.sellingPrice - item.buyingPrice) *
-        item.quantity;
+      const buyingPrice = Number(item.buyingPrice);
+      const sellingPrice = Number(item.sellingPrice);
+      const quantity = Number(item.quantity);
+
+      // Log invalid sale items
+      if (
+        Number.isNaN(buyingPrice) ||
+        Number.isNaN(sellingPrice) ||
+        Number.isNaN(quantity)
+      ) {
+        console.log("Invalid sale item found:");
+        console.log("Sale:", sale.saleNumber);
+        console.log(item);
+        return;
+      }
+
+      totalProfit += (sellingPrice - buyingPrice) * quantity;
     });
   });
 

@@ -13,12 +13,14 @@ const DashboardStats = ({ stats = {} }) => {
     {
       title: "Total Products",
       value: stats.totalProducts ?? 0,
+      subtitle: "Products in inventory",
       icon: <MdInventory2 />,
       color: "blue",
     },
     {
       title: "Today's Sales",
-      value: stats.todaysSales ?? 0,
+      value: stats.todaySales ?? stats.todaysSales ?? 0,
+      subtitle: "Orders completed today",
       icon: <MdPointOfSale />,
       color: "green",
     },
@@ -27,6 +29,7 @@ const DashboardStats = ({ stats = {} }) => {
       value: `KSh ${Number(
         stats.todayRevenue ?? 0
       ).toLocaleString()}`,
+      subtitle: "Revenue generated today",
       icon: <MdPayments />,
       color: "purple",
     },
@@ -35,12 +38,14 @@ const DashboardStats = ({ stats = {} }) => {
       value: `KSh ${Number(
         stats.totalRevenue ?? 0
       ).toLocaleString()}`,
+      subtitle: "All-time sales revenue",
       icon: <MdTrendingUp />,
       color: "orange",
     },
     {
       title: "Low Stock",
-      value: stats.lowStock ?? 0,
+      value: stats.lowStockProducts ?? stats.lowStock ?? 0,
+      subtitle: "Items needing restock",
       icon: <MdWarningAmber />,
       color: "red",
     },
@@ -53,15 +58,24 @@ const DashboardStats = ({ stats = {} }) => {
           key={card.title}
           className="dashboard-stat-card"
         >
-          <div
-            className={`stat-icon ${card.color}`}
-          >
-            {card.icon}
+          <div className="stat-top">
+            <div className={`stat-icon ${card.color}`}>
+              {card.icon}
+            </div>
+
+            <span className="stat-badge">
+              Live
+            </span>
           </div>
 
           <div className="stat-content">
-            <p>{card.title}</p>
+            <p className="stat-title">{card.title}</p>
+
             <h2>{card.value}</h2>
+
+            <span className="stat-subtitle">
+              {card.subtitle}
+            </span>
           </div>
         </div>
       ))}

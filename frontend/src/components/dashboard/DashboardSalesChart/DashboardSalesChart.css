@@ -1,113 +1,165 @@
-.dashboard-sales-chart {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
-  border-radius: 18px;
-  padding: 24px;
+.dashboard-sales-chart{
 
-  display: flex;
-  flex-direction: column;
+    background:#fff;
 
-  min-height: 420px;
+    border:1px solid #E5E7EB;
 
-  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05);
+    border-radius:20px;
 
-  transition: all 0.3s ease;
-}
+    padding:26px;
 
-.dashboard-sales-chart:hover {
-  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
-}
-
-/* ==========================
-   HEADER
-========================== */
-
-.chart-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 24px;
-}
-
-.chart-header h2 {
-  margin: 0;
-  font-size: 20px;
-  font-weight: 700;
-  color: #0f172a;
-}
-
-.chart-header p {
-  margin-top: 6px;
-  color: #64748b;
-  font-size: 14px;
-  line-height: 1.5;
-}
-
-/* ==========================
-   CHART
-========================== */
-
-.dashboard-sales-chart .recharts-responsive-container {
-  flex: 1;
-}
-
-/* Remove ugly chart outlines */
-
-.recharts-wrapper *:focus {
-  outline: none;
-}
-
-/* ==========================
-   EMPTY STATE
-========================== */
-
-.chart-empty {
-  flex: 1;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  color: #94a3b8;
-  font-size: 16px;
-  font-weight: 500;
-}
-
-/* ==========================
-   TABLET
-========================== */
-
-@media (max-width: 992px) {
-
-  .dashboard-sales-chart {
-    min-height: 380px;
-    padding: 20px;
-  }
+    box-shadow:0 8px 30px rgba(0,0,0,.04);
 
 }
 
-/* ==========================
-   MOBILE
-========================== */
+.chart-header{
 
-@media (max-width: 768px) {
+    display:flex;
 
-  .dashboard-sales-chart {
-    min-height: 340px;
-    padding: 18px;
-  }
+    justify-content:space-between;
 
-  .chart-header {
-    flex-direction: column;
-    gap: 6px;
-  }
+    align-items:flex-start;
 
-  .chart-header h2 {
-    font-size: 18px;
-  }
+    gap:20px;
 
-  .chart-header p {
-    font-size: 13px;
-  }
+    margin-bottom:30px;
+
+    flex-wrap:wrap;
+
+}
+
+.chart-badge{
+
+    display:inline-block;
+
+    background:#EFF6FF;
+
+    color:#2563EB;
+
+    padding:6px 14px;
+
+    border-radius:999px;
+
+    font-size:12px;
+
+    font-weight:700;
+
+    margin-bottom:12px;
+
+}
+
+.chart-header h2{
+
+    font-size:26px;
+
+    color:#111827;
+
+    margin-bottom:8px;
+
+}
+
+.chart-header p{
+
+    color:#6B7280;
+
+}
+
+.chart-summary{
+
+    display:flex;
+
+    gap:28px;
+
+}
+
+.chart-summary div{
+
+    background:#F9FAFB;
+
+    padding:16px 22px;
+
+    border-radius:14px;
+
+    text-align:center;
+
+}
+
+.chart-summary small{
+
+    display:block;
+
+    color:#6B7280;
+
+    margin-bottom:6px;
+
+}
+
+.chart-summary strong{
+
+    color:#111827;
+
+    font-size:18px;
+
+}
+
+.chart-empty{
+
+    height:320px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    color:#9CA3AF;
+
+}
+
+@media(max-width:768px){
+
+.chart-header{
+
+flex-direction:column;
+
+}
+
+.chart-summary{
+
+width:100%;
+
+justify-content:space-between;
+
+}
+
+.chart-summary div{
+
+flex:1;
+
+padding:14px;
+
+}
+
+.chart-header h2{
+
+font-size:22px;
+
+}
+
+}
+
+@media(max-width:480px){
+
+.dashboard-sales-chart{
+
+padding:18px;
+
+}
+
+.chart-summary{
+
+flex-direction:column;
+
+}
 
 }

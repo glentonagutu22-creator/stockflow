@@ -11,6 +11,8 @@ import supplierRoutes from "./routes/supplierRoutes.js";
 import purchaseRoutes from "./routes/purchaseRoutes.js";
 import categoryRoutes from "./routes/categoryRoutes.js";
 import reportRoutes from "./routes/reportRoutes.js";
+import receiptSettingsRoutes from "./routes/receiptSettingsRoutes.js";
+import uploadRoutes from "./routes/uploadRoutes.js";
 dotenv.config();
 
 const app = express();
@@ -36,8 +38,12 @@ app.use(
   "/api/purchases",
   purchaseRoutes
 );
+import profileRoutes from "./routes/profileRoutes.js";
+app.use("/api/upload", uploadRoutes);
+app.use("/api/settings/receipt", receiptSettingsRoutes);
 app.use("/api/categories", categoryRoutes);
 app.use("/api/reports", reportRoutes);
+app.use("/api/profile", profileRoutes);
 // Error middleware (must be last)
 app.use(errorMiddleware);
 

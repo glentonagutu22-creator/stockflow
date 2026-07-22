@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 export const createCategorySchema = z.object({
-  body: z.object({
+  
     name: z
       .string()
       .trim()
@@ -18,11 +18,11 @@ export const createCategorySchema = z.object({
     status: z
       .enum(["Active", "Inactive"])
       .optional(),
-  }),
+  
 });
 
 export const updateCategorySchema = z.object({
-  body: z.object({
+  
     name: z
       .string()
       .trim()
@@ -39,7 +39,7 @@ export const updateCategorySchema = z.object({
     status: z
       .enum(["Active", "Inactive"])
       .optional(),
-  }),
+  
 });
 
 export const categoryIdSchema = z.object({

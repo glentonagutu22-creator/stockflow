@@ -1,48 +1,160 @@
-.dashboard-actions {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
+.quick-actions{
+
+    background:#fff;
+
+    border:1px solid #E5E7EB;
+
+    border-radius:20px;
+
+    padding:24px;
+
+    margin-bottom:28px;
+
 }
 
-.dashboard-actions h2 {
-  display: none;
+.section-header{
+
+    margin-bottom:24px;
+
 }
 
-.dashboard-actions-grid {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
+.section-header h3{
+
+    font-size:22px;
+
+    color:#111827;
+
 }
 
-.dashboard-action-card {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+.section-header p{
 
-  padding: 12px 18px;
+    color:#6B7280;
 
-  background: var(--primary);
-  color: white;
+    margin-top:4px;
 
-  border: none;
-  border-radius: var(--radius);
-
-  cursor: pointer;
-  transition: var(--transition);
-
-  font-weight: 600;
 }
 
-.dashboard-action-card:hover {
-  transform: translateY(-2px);
-  opacity: 0.95;
+.quick-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:18px;
+
 }
 
-.action-icon {
-  font-size: 18px;
-  color: white;
+.quick-card{
+
+    border:none;
+
+    background:#F9FAFB;
+
+    border-radius:16px;
+
+    padding:20px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+    text-align:left;
+
 }
 
-.dashboard-action-card span {
-  white-space: nowrap;
+.quick-card:hover{
+
+    transform:translateY(-4px);
+
+    background:#F3F4F6;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+}
+
+.quick-icon{
+
+    width:60px;
+
+    height:60px;
+
+    border-radius:16px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    color:white;
+
+    font-size:28px;
+
+}
+
+.quick-icon.green{background:#16A34A;}
+.quick-icon.blue{background:#2563EB;}
+.quick-icon.orange{background:#EA580C;}
+.quick-icon.purple{background:#7C3AED;}
+
+.quick-card h4{
+
+    margin-bottom:6px;
+
+    color:#111827;
+
+}
+
+.quick-card p{
+
+    color:#6B7280;
+
+    font-size:14px;
+
+}
+
+/* Tablet */
+
+@media(max-width:900px){
+
+.quick-grid{
+
+grid-template-columns:1fr 1fr;
+
+}
+
+}
+
+/* Phone */
+
+@media(max-width:600px){
+
+.quick-grid{
+
+grid-template-columns:1fr;
+
+}
+
+.quick-card{
+
+padding:18px;
+
+}
+
+.quick-icon{
+
+width:52px;
+
+height:52px;
+
+font-size:24px;
+
+}
+
 }

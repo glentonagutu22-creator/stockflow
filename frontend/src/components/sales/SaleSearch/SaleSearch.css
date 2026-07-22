@@ -1,16 +1,57 @@
-.sale-search {
-  margin-bottom: 20px;
+.sale-search{
+position:relative;
+margin-bottom:24px;
 }
 
-.sale-search input {
-  width: 100%;
-  padding: 12px 15px;
-  border: 1px solid #dcdcdc;
-  border-radius: 8px;
-  font-size: 15px;
-  outline: none;
+.search-icon{
+position:absolute;
+left:18px;
+top:50%;
+transform:translateY(-50%);
+font-size:20px;
+color:#9CA3AF;
+pointer-events:none;
 }
 
-.sale-search input:focus {
-  border-color: #2563eb;
+.sale-search input{
+width:100%;
+height:54px;
+
+padding-left:52px;
+padding-right:18px;
+
+border:1px solid #E5E7EB;
+border-radius:14px;
+
+background:#fff;
+
+font-size:15px;
+
+transition:.25s;
+box-sizing:border-box;
+}
+
+.sale-search input:focus{
+outline:none;
+border-color:#2563EB;
+box-shadow:0 0 0 4px rgba(37,99,235,.10);
+}
+
+.sale-search input::placeholder{
+color:#9CA3AF;
+}
+
+@media(max-width:768px){
+
+.sale-search input{
+height:50px;
+font-size:14px;
+padding-left:48px;
+}
+
+.search-icon{
+font-size:18px;
+left:16px;
+}
+
 }

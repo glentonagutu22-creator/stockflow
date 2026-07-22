@@ -6,13 +6,27 @@ import {
   updateProduct,
   deleteProduct,
 } from "../services/productService.js";
+
 import productSchema from "../validators/productValidator.js";
 import updateProductSchema from "../validators/updateProductSchema.js";
 
-const createProductController = asyncHandler(async (req, res) => {
-  const validatedData = productSchema.parse(req.body);
+import uploadToCloudinary from "../utils/uploadToCloudinary.js";
 
-  const product = await createProduct(validatedData, req.user.id);
+const createProductController = asyncHandler(async (req, res) => {
+  let body = { ...req.body };
+
+  // Upload image to Cloudinary if one was provided
+  if (req.file) {
+    const result = await uploadToCloudinary(req.file, "stockflow/products");
+    body.image = result.secure_url;
+  }
+
+  const validatedData = productSchema.parse(body);
+
+  const product = await createProduct(
+    validatedData,
+    req.user.id
+  );
 
   res.status(201).json({
     success: true,
@@ -52,7 +66,15 @@ const getProductByIdController = asyncHandler(async (req, res) => {
 });
 
 const updateProductController = asyncHandler(async (req, res) => {
-  const validatedData = updateProductSchema.parse(req.body);
+  let body = { ...req.body };
+
+  // Upload a new image if one was selected
+  if (req.file) {
+    const result = await uploadToCloudinary(req.file, "stockflow/products");
+    body.image = result.secure_url;
+  }
+
+  const validatedData = updateProductSchema.parse(body);
 
   const product = await updateProduct(
     req.params.id,

@@ -1,0 +1,46 @@
+.dashboard-layout{
+    display:flex;
+    min-height:100vh;
+    background:var(--background);
+}
+
+.dashboard-content{
+    flex:1;
+
+    margin-left:250px;
+
+    display:flex;
+    flex-direction:column;
+
+    transition:.3s ease;
+}
+
+.dashboard-content.collapsed{
+    margin-left:78px;
+}
+
+.dashboard-main{
+    flex:1;
+
+    padding:24px;
+
+    overflow:auto;
+
+    background:var(--background);
+}
+
+@media(max-width:900px){
+
+.dashboard-content{
+    margin-left:0;
+}
+
+.dashboard-content.collapsed{
+    margin-left:0;
+}
+
+.dashboard-main{
+    padding:16px;
+}
+
+}

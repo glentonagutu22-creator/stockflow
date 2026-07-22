@@ -5,7 +5,8 @@ import ProductTable from "../../components/products/ProductTable/ProductTable";
 import ProductForm from "../../components/products/ProductForm/ProductForm";
 import Modal from "../../components/common/Modal/Modal";
 import Pagination from "../../components/Pagination/Pagination";
-import { toast } from "react-toastify";
+
+import toastService from "../../services/toastService";
 
 import {
   getProducts,
@@ -33,16 +34,17 @@ const Products = () => {
     try {
       setLoading(true);
 
-     const response = await getProducts({
-  search,
-  page: currentPage,
-  limit: 10,
-});
+      const response = await getProducts({
+        search,
+        page: currentPage,
+        limit: 10,
+      });
 
       setProducts(response.data.products);
       setTotalPages(response.data.pages);
     } catch (error) {
       console.error(error);
+      toastService.error(error);
     } finally {
       setLoading(false);
     }
@@ -64,12 +66,35 @@ const Products = () => {
     setIsModalOpen(true);
   };
 
-  const handleSaveProduct = async (formData) => {
+  const handleSaveProduct = async (product) => {
     try {
+      const data = new FormData();
+
+      data.append("name", product.name);
+      data.append("description", product.description);
+      data.append("category", product.category);
+      data.append("buyingPrice", product.buyingPrice);
+      data.append("sellingPrice", product.sellingPrice);
+      data.append("quantity", product.quantity);
+      data.append("minimumStock", product.minimumStock);
+      data.append("unit", product.unit);
+
+      if (product.image) {
+        data.append("image", product.image);
+      }
+
       if (isEditing) {
-        await updateProduct(selectedProduct._id, formData);
+        await updateProduct(selectedProduct._id, data);
+
+        toastService.success(
+          "Product updated successfully."
+        );
       } else {
-        await createProduct(formData);
+        await createProduct(data);
+
+        toastService.success(
+          "Product created successfully."
+        );
       }
 
       setIsModalOpen(false);
@@ -78,7 +103,8 @@ const Products = () => {
 
       fetchProducts();
     } catch (error) {
-        toast.error(error.response?.data?.message || "Something went wong.")
+      console.error(error);
+      toastService.error(error);
     }
   };
 
@@ -91,12 +117,17 @@ const Products = () => {
     try {
       await deleteProduct(productToDelete._id);
 
+      toastService.success(
+        "Product deleted successfully."
+      );
+
       setDeleteModalOpen(false);
       setProductToDelete(null);
 
       fetchProducts();
     } catch (error) {
       console.error(error);
+      toastService.error(error);
     }
   };
 
@@ -133,9 +164,18 @@ const Products = () => {
           setSelectedProduct(null);
           setIsEditing(false);
         }}
-        title={isEditing ? "Edit Product" : "Add Product"}
+        title={
+          isEditing
+            ? "Edit Product"
+            : "Add Product"
+        }
       >
         <ProductForm
+          key={
+            isEditing
+              ? selectedProduct?._id
+              : "new-product"
+          }
           initialData={selectedProduct || {}}
           onSubmit={handleSaveProduct}
         />
@@ -151,7 +191,10 @@ const Products = () => {
       >
         <p>
           Are you sure you want to delete{" "}
-          <strong>{productToDelete?.name}</strong>?
+          <strong>
+            {productToDelete?.name}
+          </strong>
+          ?
         </p>
 
         <div className="delete-actions">

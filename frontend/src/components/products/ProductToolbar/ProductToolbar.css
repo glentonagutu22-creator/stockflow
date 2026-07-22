@@ -1,50 +1,173 @@
 .product-toolbar {
   display: flex;
   justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-bottom: 26px;
+}
+
+.toolbar-badge {
+  display: inline-block;
+  background: #eff6ff;
+  color: #2563eb;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.product-toolbar h1 {
+  font-size: 32px;
+  color: #111827;
+  margin-bottom: 8px;
+}
+
+.product-toolbar p {
+  color: #6b7280;
+  line-height: 1.5;
+}
+
+.toolbar-actions {
+  display: flex;
   align-items: center;
-  margin-bottom: 20px;
-  gap: 20px;
+  justify-content: flex-end;
+  flex: 1;
+  gap: 16px;
+  min-width: 0;
 }
 
 .search-box {
+  position: relative;
   flex: 1;
-  display: flex;
-  align-items: center;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  padding: 0 12px;
-}
-
-.search-icon {
-  color: var(--text-secondary);
+  max-width: 420px;
+  min-width: 240px;
 }
 
 .search-box input {
   width: 100%;
-  border: none;
+  height: 48px;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  padding: 0 16px 0 46px;
+  background: #fff;
+  font-size: 14px;
+  transition: all 0.25s ease;
+}
+
+.search-box input:focus {
   outline: none;
-  background: transparent;
-  padding: 12px;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+}
+
+.search-icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #9ca3af;
+  font-size: 18px;
 }
 
 .add-product-btn {
+  height: 48px;
+  padding: 0 22px;
+  border: none;
+  border-radius: 14px;
+  background: #2563eb;
+  color: #fff;
   display: flex;
   align-items: center;
-  gap: 8px;
-
-  border: none;
+  justify-content: center;
+  gap: 10px;
   cursor: pointer;
-
-  padding: 12px 18px;
-
-  background: var(--primary);
-  color: white;
-
-  border-radius: var(--radius-md);
-  transition: var(--transition);
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: all 0.25s ease;
 }
 
 .add-product-btn:hover {
-  background: var(--primary-hover);
+  background: #1d4ed8;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.25);
+}
+
+/* =========================
+   Tablet
+========================= */
+
+@media (max-width: 992px) {
+  .product-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .toolbar-actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .search-box {
+    flex: 1;
+    max-width: none;
+  }
+}
+
+/* =========================
+   Mobile
+========================= */
+
+@media (max-width: 768px) {
+  .product-toolbar {
+    gap: 18px;
+  }
+
+  .product-toolbar h1 {
+    font-size: 26px;
+  }
+
+  .product-toolbar p {
+    font-size: 14px;
+  }
+
+  .toolbar-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .search-box {
+    width: 100%;
+    min-width: 100%;
+  }
+
+  .search-box input {
+    width: 100%;
+  }
+
+  .add-product-btn {
+    width: 100%;
+  }
+}
+
+/* =========================
+   Small Phones
+========================= */
+
+@media (max-width: 480px) {
+  .product-toolbar h1 {
+    font-size: 22px;
+  }
+
+  .toolbar-badge {
+    font-size: 11px;
+  }
+
+  .add-product-btn {
+    font-size: 13px;
+    height: 46px;
+  }
 }

@@ -15,121 +15,306 @@ import {
   deleteCategory,
 } from "../../services/categoryService";
 
+
 const Categories = () => {
-  const [categories, setCategories] = useState([]);
 
-  const [loading, setLoading] = useState(false);
 
-  const [search, setSearch] = useState("");
+const [categories,setCategories] = useState([]);
 
-  const [page, setPage] = useState(1);
+const [loading,setLoading] = useState(false);
 
-  const [totalPages, setTotalPages] = useState(1);
+const [search,setSearch] = useState("");
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
+const [page,setPage] = useState(1);
 
-  const [selectedCategory, setSelectedCategory] = useState(null);
+const [totalPages,setTotalPages] = useState(1);
 
-  const fetchCategories = async () => {
-    try {
-      setLoading(true);
+const [isModalOpen,setIsModalOpen] = useState(false);
 
-      const response = await getCategories({
-        page,
-        search,
-      });
+const [selectedCategory,setSelectedCategory] = useState(null);
 
-      setCategories(response.data.categories);
 
-      setTotalPages(response.data.pages);
-    } catch (error) {
-      toast.error(
-        error.response?.data?.message || "Failed to fetch categories"
-      );
-    } finally {
-      setLoading(false);
-    }
-  };
 
-  useEffect(() => {
-    fetchCategories();
-  }, [page, search]);
 
-  const handleCreate = () => {
-    setSelectedCategory(null);
-    setIsModalOpen(true);
-  };
+const fetchCategories = async()=>{
 
-  const handleEdit = (category) => {
-    setSelectedCategory(category);
-    setIsModalOpen(true);
-  };
+try{
 
-  const handleDelete = async (id) => {
-    if (!window.confirm("Delete this category?")) return;
+setLoading(true);
 
-    try {
-      await deleteCategory(id);
 
-      toast.success("Category deleted successfully");
+const response = await getCategories({
 
-      fetchCategories();
-    } catch (error) {
-      toast.error(
-        error.response?.data?.message || "Failed to delete category"
-      );
-    }
-  };
+page,
 
-  const handleSubmit = async (data) => {
-    try {
-      if (selectedCategory) {
-        await updateCategory(selectedCategory._id, data);
+search,
 
-        toast.success("Category updated successfully");
-      } else {
-        await createCategory(data);
+});
 
-        toast.success("Category created successfully");
-      }
 
-      setIsModalOpen(false);
+setCategories(
+response.data.categories
+);
 
-      fetchCategories();
-    } catch (error) {
-      toast.error(
-        error.response?.data?.message || "Operation failed"
-      );
-    }
-  };
 
-  return (
-    <div className="categories-page">
-      <CategoryToolbar
-        search={search}
-        setSearch={setSearch}
-        onAdd={handleCreate}
-      />
+setTotalPages(
+response.data.pages
+);
 
-      <CategoryTable
-        categories={categories}
-        loading={loading}
-        onEdit={handleEdit}
-        onDelete={handleDelete}
-      />
 
-      <Modal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-      >
-        <CategoryForm
-          initialData={selectedCategory}
-          onSubmit={handleSubmit}
-          onCancel={() => setIsModalOpen(false)}
-        />
-      </Modal>
-    </div>
-  );
+
+}catch(error){
+
+toast.error(
+error.response?.data?.message ||
+"Failed to fetch categories"
+);
+
+
+}finally{
+
+setLoading(false);
+
+}
+
 };
+
+
+
+
+useEffect(()=>{
+
+fetchCategories();
+
+},[page,search]);
+
+
+
+
+
+const handleCreate=()=>{
+
+setSelectedCategory(null);
+
+setIsModalOpen(true);
+
+};
+
+
+
+
+
+const handleEdit=(category)=>{
+
+setSelectedCategory(category);
+
+setIsModalOpen(true);
+
+};
+
+
+
+
+
+const handleDelete=async(id)=>{
+
+
+if(
+!window.confirm(
+"Delete this category?"
+)
+
+) return;
+
+
+
+try{
+
+
+await deleteCategory(id);
+
+
+toast.success(
+"Category deleted successfully"
+);
+
+
+fetchCategories();
+
+
+
+}catch(error){
+
+toast.error(
+error.response?.data?.message ||
+"Failed to delete category"
+);
+
+}
+
+
+};
+
+
+
+
+
+const handleSubmit=async(data)=>{
+
+
+try{
+
+
+if(selectedCategory){
+
+
+await updateCategory(
+selectedCategory._id,
+data
+);
+
+
+toast.success(
+"Category updated successfully"
+);
+
+
+
+}else{
+
+
+await createCategory(data);
+
+
+toast.success(
+"Category created successfully"
+);
+
+
+}
+
+
+
+setIsModalOpen(false);
+
+
+fetchCategories();
+
+
+
+}catch(error){
+
+toast.error(
+error.response?.data?.message ||
+"Operation failed"
+);
+
+}
+
+
+};
+
+
+
+
+
+
+return (
+
+<div className="categories-page">
+
+
+
+<div className="page-header">
+
+<div>
+
+<h1>
+Categories
+</h1>
+
+<p>
+Organize products using categories.
+</p>
+
+</div>
+
+</div>
+
+
+
+
+
+<div className="categories-card">
+
+
+<CategoryToolbar
+
+search={search}
+
+setSearch={setSearch}
+
+onAdd={handleCreate}
+
+/>
+
+
+
+
+<CategoryTable
+
+categories={categories}
+
+loading={loading}
+
+onEdit={handleEdit}
+
+onDelete={handleDelete}
+
+/>
+
+
+</div>
+
+
+
+
+
+
+<Modal
+
+isOpen={isModalOpen}
+
+onClose={()=>
+setIsModalOpen(false)
+}
+
+>
+
+
+<CategoryForm
+
+initialData={selectedCategory}
+
+onSubmit={handleSubmit}
+
+onCancel={()=>
+setIsModalOpen(false)
+}
+
+/>
+
+
+</Modal>
+
+
+
+
+</div>
+
+);
+
+};
+
 
 export default Categories;

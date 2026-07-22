@@ -1,13 +1,13 @@
+import "./DashboardQuickActions.css";
+
 import {
-  FaCashRegister,
-  FaBoxOpen,
-  FaClipboardList,
-  FaChartBar,
-} from "react-icons/fa";
+  MdPointOfSale,
+  MdInventory2,
+  MdShoppingCart,
+  MdAssessment,
+} from "react-icons/md";
 
 import { useNavigate } from "react-router-dom";
-
-import "./DashboardQuickActions.css";
 
 const DashboardQuickActions = () => {
   const navigate = useNavigate();
@@ -15,46 +15,64 @@ const DashboardQuickActions = () => {
   const actions = [
     {
       title: "New Sale",
-      icon: <FaCashRegister />,
+      subtitle: "Create a sales transaction",
+      icon: <MdPointOfSale />,
       path: "/sales",
+      color: "green",
     },
     {
-      title: "Products",
-      icon: <FaBoxOpen />,
+      title: "Add Product",
+      subtitle: "Register a new product",
+      icon: <MdInventory2 />,
       path: "/products",
+      color: "blue",
     },
     {
-      title: "Sales History",
-      icon: <FaClipboardList />,
-      path: "/sales",
+      title: "New Purchase",
+      subtitle: "Record supplier purchase",
+      icon: <MdShoppingCart />,
+      path: "/purchases",
+      color: "orange",
     },
     {
       title: "Reports",
-      icon: <FaChartBar />,
+      subtitle: "View business analytics",
+      icon: <MdAssessment />,
       path: "/reports",
+      color: "purple",
     },
   ];
 
   return (
-    <div className="dashboard-actions">
-      <h2>Quick Actions</h2>
+    <section className="quick-actions">
 
-      <div className="dashboard-actions-grid">
+      <div className="section-header">
+        <h3>Quick Actions</h3>
+        <p>Frequently used shortcuts</p>
+      </div>
+
+      <div className="quick-grid">
+
         {actions.map((action) => (
           <button
             key={action.title}
-            className="dashboard-action-card"
+            className="quick-card"
             onClick={() => navigate(action.path)}
           >
-            <div className="action-icon">
+            <div className={`quick-icon ${action.color}`}>
               {action.icon}
             </div>
 
-            <span>{action.title}</span>
+            <div>
+              <h4>{action.title}</h4>
+              <p>{action.subtitle}</p>
+            </div>
           </button>
         ))}
+
       </div>
-    </div>
+
+    </section>
   );
 };
 

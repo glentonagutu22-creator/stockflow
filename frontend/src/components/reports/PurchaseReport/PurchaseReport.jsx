@@ -8,7 +8,9 @@ const PurchaseReport = ({ data }) => {
       <div className="report-grid">
         <div>
           <span>Total Purchases</span>
-          <strong>{data.totalPurchases || 0}</strong>
+         <strong>
+  {Number(data.totalPurchases || 0).toLocaleString()}
+</strong>
         </div>
 
         <div>

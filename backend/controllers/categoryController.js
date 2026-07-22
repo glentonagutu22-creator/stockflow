@@ -9,7 +9,10 @@ import {
 import * as categoryService from "../services/categoryService.js";
 
 export const createCategory = asyncHandler(async (req, res) => {
-  const { body } = validate(createCategorySchema, req);
+
+   console.log("Content-Type:", req.headers["content-type"]);
+  console.log("Body:", req.body);
+  const body = createCategorySchema.parse(req.body);
 
   const category = await categoryService.createCategory(
     body,
@@ -34,9 +37,9 @@ export const getCategories = asyncHandler(async (req, res) => {
 });
 
 export const getCategoryById = asyncHandler(async (req, res) => {
-  const { params } = validate(categoryIdSchema, req);
+  const { id } = categoryIdSchema.parse(req.params);
 
-  const category = await categoryService.getCategoryById(params.id);
+  const category = await categoryService.getCategoryById(id);
 
   res.status(200).json({
     success: true,
@@ -46,13 +49,10 @@ export const getCategoryById = asyncHandler(async (req, res) => {
 });
 
 export const updateCategory = asyncHandler(async (req, res) => {
-  const { params } = validate(categoryIdSchema, req);
-  const { body } = validate(updateCategorySchema, req);
+  const { id } = categoryIdSchema.parse(req.params);
+  const body = updateCategorySchema.parse(req.body);
 
-  const category = await categoryService.updateCategory(
-    params.id,
-    body
-  );
+  const category = await categoryService.updateCategory(id, body);
 
   res.status(200).json({
     success: true,
@@ -62,9 +62,9 @@ export const updateCategory = asyncHandler(async (req, res) => {
 });
 
 export const deleteCategory = asyncHandler(async (req, res) => {
-  const { params } = validate(categoryIdSchema, req);
+  const { id } = categoryIdSchema.parse(req.params);
 
-  await categoryService.deleteCategory(params.id);
+  await categoryService.deleteCategory(id);
 
   res.status(200).json({
     success: true,

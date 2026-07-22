@@ -1,8 +1,67 @@
-.customers-page {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  padding: 20px;
-  width: 100%;
-  box-sizing: border-box;
+.customers-page{
+
+display:flex;
+
+flex-direction:column;
+
+gap:24px;
+
+}
+
+
+.page-header h1{
+
+font-size:32px;
+
+margin:0;
+
+color:#111827;
+
+}
+
+
+.page-header p{
+
+margin-top:8px;
+
+color:#6B7280;
+
+}
+
+
+
+.customers-card{
+
+background:#fff;
+
+border:1px solid #E5E7EB;
+
+border-radius:20px;
+
+padding:24px;
+
+box-shadow:
+0 10px 30px rgba(0,0,0,.04);
+
+}
+
+
+
+@media(max-width:768px){
+
+.page-header h1{
+
+font-size:26px;
+
+}
+
+
+.customers-card{
+
+padding:16px;
+
+border-radius:16px;
+
+}
+
 }

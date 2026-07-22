@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./Purchases.css";
-
+import toastService from "../../services/toastService";
 import PurchaseToolbar from "../../components/purchases/PurchaseToolbar/PurchaseToolbar";
 import PurchaseTable from "../../components/purchases/PurchaseTable/PurchaseTable";
 import PurchaseModal from "../../components/purchases/PurchaseModal/PurchaseModal";
@@ -77,7 +77,7 @@ const Purchases = () => {
 
       await fetchPurchases();
     } catch (error) {
-      console.error("Purchase save failed:", error);
+      toastService.error("Purchase save failed:", error);
 
       if (error.response) {
         console.log("Status:", error.response.status);
@@ -99,7 +99,7 @@ const Purchases = () => {
       await deletePurchase(id);
       await fetchPurchases();
     } catch (error) {
-      console.error("Delete failed:", error);
+      toastService.error("Delete failed:", error);
 
       if (error.response) {
         console.log(error.response.data);

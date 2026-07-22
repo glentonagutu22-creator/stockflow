@@ -40,36 +40,65 @@ const Sales = () => {
 
   return (
     <div className="sales-page">
-      <div className="products-section">
-        <h2>Products</h2>
 
-        <SaleSearch
-          search={search}
-          setSearch={setSearch}
-        />
+      <div className="sales-header">
 
-        {loading ? (
-          <h3>Loading products...</h3>
-        ) : (
-          <div className="products-grid">
-            {products.length > 0 ? (
-              products.map((product) => (
-                <ProductCard
-                  key={product._id}
-                  product={product}
-                  onAdd={addToCart}
-                />
-              ))
-            ) : (
-              <p>No products found.</p>
-            )}
-          </div>
-        )}
+        <div>
+          <span className="sales-badge">
+            Point of Sale
+          </span>
+
+          <h1>Sales</h1>
+
+          <p>
+            Search products, build a cart and
+            complete customer sales.
+          </p>
+        </div>
+
       </div>
 
-      <div className="cart-section">
-        <Cart onSaleComplete={fetchProducts} />
+      <div className="sales-layout">
+
+        <section className="products-section">
+
+          <SaleSearch
+            search={search}
+            setSearch={setSearch}
+          />
+
+          {loading ? (
+            <div className="loading-products">
+              Loading products...
+            </div>
+          ) : (
+            <div className="products-grid">
+
+              {products.length > 0 ? (
+                products.map((product) => (
+                  <ProductCard
+                    key={product._id}
+                    product={product}
+                    onAdd={addToCart}
+                  />
+                ))
+              ) : (
+                <div className="empty-products">
+                  No products found.
+                </div>
+              )}
+
+            </div>
+          )}
+
+        </section>
+
+        <aside className="cart-section">
+          <Cart onSaleComplete={fetchProducts} />
+        </aside>
+
       </div>
+
     </div>
   );
 };

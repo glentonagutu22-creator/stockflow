@@ -1,26 +1,41 @@
+import { FiSearch, FiPlus } from "react-icons/fi";
 import "./CustomerToolbar.css";
 
-const CustomerToolbar = ({ search, setSearch, onAdd }) => {
+const CustomerToolbar = ({
+  search,
+  setSearch,
+  onAdd,
+}) => {
   return (
     <div className="customer-toolbar">
 
-      <div className="customer-toolbar-left">
+      <div className="customer-search">
+
+        <FiSearch className="customer-search-icon" />
+
         <input
           type="text"
-          placeholder="Search by name, phone or customer code..."
+          placeholder="Search customers by name, phone or code..."
           value={search}
-          onChange={(e) => setSearch(e.target.value)}
+          onChange={(e) =>
+            setSearch(e.target.value)
+          }
         />
+
       </div>
 
-      <div className="customer-toolbar-right">
-        <button
-          className="add-customer-btn"
-          onClick={onAdd}
-        >
-          + Add Customer
-        </button>
-      </div>
+
+      <button
+        className="add-customer-btn"
+        onClick={onAdd}
+      >
+
+        <FiPlus />
+
+        Add Customer
+
+      </button>
+
 
     </div>
   );

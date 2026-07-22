@@ -19,6 +19,7 @@ const pageTitles = {
   "/sales": "Sales",
   "/reports": "Reports",
   "/settings": "Settings",
+  "/profile": "Profile",
 };
 
 const Navbar = ({

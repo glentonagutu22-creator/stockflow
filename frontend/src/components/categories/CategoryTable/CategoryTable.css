@@ -1,34 +1,212 @@
 .category-table-container{
-    background:#fff;
-    border-radius:10px;
-    overflow:hidden;
-    box-shadow:0 2px 10px rgba(0,0,0,.08);
+
+width:100%;
+
+overflow-x:auto;
+
 }
+
+
 
 .category-table{
-    width:100%;
-    border-collapse:collapse;
+
+width:100%;
+
+border-collapse:collapse;
+
+min-width:650px;
+
 }
 
-.category-table th,
-.category-table td{
-    padding:14px;
-    border-bottom:1px solid #eee;
-    text-align:left;
+
+
+.category-table thead{
+
+background:#F8FAFC;
+
 }
+
+
 
 .category-table th{
-    background:#f8f9fa;
+
+text-align:left;
+
+padding:16px;
+
+font-size:13px;
+
+font-weight:700;
+
+color:#64748B;
+
+text-transform:uppercase;
+
+border-bottom:1px solid #E5E7EB;
+
 }
 
-.category-table tr:hover{
-    background:#fafafa;
+
+
+.category-table td{
+
+padding:16px;
+
+border-bottom:1px solid #F1F5F9;
+
+color:#374151;
+
+font-size:14px;
+
 }
 
-.category-table button{
-    margin-right:8px;
-    padding:6px 12px;
-    border:none;
-    border-radius:6px;
-    cursor:pointer;
+
+
+.category-table tbody tr{
+
+transition:.2s;
+
+}
+
+
+
+.category-table tbody tr:hover{
+
+background:#F8FAFC;
+
+}
+
+
+
+.category-table-container::-webkit-scrollbar{
+
+height:8px;
+
+}
+
+
+
+.category-table-container::-webkit-scrollbar-thumb{
+
+background:#CBD5E1;
+
+border-radius:10px;
+
+}
+
+
+
+@media(max-width:768px){
+
+.category-table{
+
+min-width:700px;
+
+}
+
+}
+.category-actions{
+
+display:flex;
+
+gap:10px;
+
+}
+
+
+
+.category-actions button{
+
+width:36px;
+
+height:36px;
+
+border:none;
+
+border-radius:10px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+cursor:pointer;
+
+font-size:16px;
+
+transition:.2s;
+
+}
+
+
+
+.category-edit-btn{
+
+background:#EFF6FF;
+
+color:#2563EB;
+
+}
+
+
+
+.category-edit-btn:hover{
+
+background:#DBEAFE;
+
+}
+
+
+
+.category-delete-btn{
+
+background:#FEF2F2;
+
+color:#DC2626;
+
+}
+
+
+
+.category-delete-btn:hover{
+
+background:#FEE2E2;
+
+}
+
+
+
+.category-status{
+
+padding:6px 12px;
+
+border-radius:999px;
+
+font-size:12px;
+
+font-weight:600;
+
+text-transform:capitalize;
+
+}
+
+
+
+.category-status.active{
+
+background:#DCFCE7;
+
+color:#15803D;
+
+}
+
+
+
+.category-status.inactive{
+
+background:#FEE2E2;
+
+color:#B91C1C;
+
 }

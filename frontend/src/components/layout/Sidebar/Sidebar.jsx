@@ -1,5 +1,6 @@
 import "./Sidebar.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useAuth } from "../../../context/AuthContext";
 
 import {
   MdDashboard,
@@ -10,6 +11,7 @@ import {
   MdAssessment,
   MdSettings,
   MdLogout,
+  MdPerson,
 } from "react-icons/md";
 
 import {
@@ -86,6 +88,11 @@ const menu = [
     title: "SYSTEM",
     items: [
       {
+        name: "Profile",
+        path: "/profile",
+        icon: <MdPerson />,
+      },
+      {
         name: "Settings",
         path: "/settings",
         icon: <MdSettings />,
@@ -99,26 +106,33 @@ const Sidebar = ({
   mobileOpen,
   setMobileOpen,
 }) => {
+  const navigate = useNavigate();
+  const { logout } = useAuth();
+
+  const handleLogout = () => {
+    logout();
+
+    navigate("/login", {
+      replace: true,
+    });
+  };
+
   return (
     <>
       {mobileOpen && (
         <div
           className="sidebar-overlay"
-          onClick={() =>
-            setMobileOpen(false)
-          }
+          onClick={() => setMobileOpen(false)}
         />
       )}
 
       <aside
-        className={`sidebar
-        ${collapsed ? "collapsed" : ""}
-        ${mobileOpen ? "open" : ""}`}
+        className={`sidebar ${
+          collapsed ? "collapsed" : ""
+        } ${mobileOpen ? "open" : ""}`}
       >
         <div className="sidebar-top">
-
           <div className="sidebar-logo">
-
             <div className="logo-icon">
               <FaBoxOpen />
             </div>
@@ -126,12 +140,9 @@ const Sidebar = ({
             {!collapsed && (
               <div>
                 <h2>StockFlow</h2>
-                <span>
-                  POS & Inventory
-                </span>
+                <span>POS & Inventory</span>
               </div>
             )}
-
           </div>
 
           {menu.map((section) => (
@@ -139,9 +150,7 @@ const Sidebar = ({
               key={section.title}
               className="menu-section"
             >
-              {!collapsed && (
-                <h4>{section.title}</h4>
-              )}
+              {!collapsed && <h4>{section.title}</h4>}
 
               {section.items.map((item) => (
                 <NavLink
@@ -152,9 +161,7 @@ const Sidebar = ({
                       ? "menu-item active"
                       : "menu-item"
                   }
-                  onClick={() =>
-                    setMobileOpen(false)
-                  }
+                  onClick={() => setMobileOpen(false)}
                 >
                   <span className="menu-icon">
                     {item.icon}
@@ -170,16 +177,16 @@ const Sidebar = ({
         </div>
 
         <div className="sidebar-footer">
-
-          <button className="logout-btn">
+          <button
+            className="logout-btn"
+            onClick={handleLogout}
+          >
             <MdLogout />
 
             {!collapsed && (
               <span>Logout</span>
             )}
-
           </button>
-
         </div>
       </aside>
     </>

@@ -13,108 +13,290 @@ import SupplierReport from "../../components/reports/SupplierReport/SupplierRepo
 
 import * as reportService from "../../services/reportService";
 
-const Reports = () => {
-  const [activeTab, setActiveTab] = useState("dashboard");
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(false);
 
-  const loadReport = async (tab) => {
-    try {
+const Reports = () => {
+
+  const [activeTab,setActiveTab] =
+    useState("dashboard");
+
+  const [data,setData] =
+    useState(null);
+
+  const [loading,setLoading] =
+    useState(false);
+
+
+
+  const tabs = [
+    {
+      id:"dashboard",
+      label:"Overview",
+    },
+    {
+      id:"sales",
+      label:"Sales",
+    },
+    {
+      id:"purchases",
+      label:"Purchases",
+    },
+    {
+      id:"inventory",
+      label:"Inventory",
+    },
+    {
+      id:"categories",
+      label:"Categories",
+    },
+    {
+      id:"suppliers",
+      label:"Suppliers",
+    },
+    {
+      id:"low-stock",
+      label:"Low Stock",
+    },
+  ];
+
+
+
+  const loadReport = async(tab)=>{
+
+    try{
+
       setLoading(true);
 
       let response;
 
-      switch (tab) {
+
+      switch(tab){
+
         case "dashboard":
-          response = await reportService.getDashboardSummary();
+          response =
+          await reportService.getDashboardSummary();
           break;
+
 
         case "sales":
-          response = await reportService.getSalesReport();
+          response =
+          await reportService.getSalesReport();
           break;
+
 
         case "purchases":
-          response = await reportService.getPurchaseReport();
+          response =
+          await reportService.getPurchaseReport();
           break;
+
 
         case "inventory":
-          response = await reportService.getInventoryReport();
+          response =
+          await reportService.getInventoryReport();
           break;
+
 
         case "categories":
-          response = await reportService.getCategoryReport();
+          response =
+          await reportService.getCategoryReport();
           break;
+
 
         case "suppliers":
-          response = await reportService.getSupplierReport();
+          response =
+          await reportService.getSupplierReport();
           break;
 
+
         case "low-stock":
-          response = await reportService.getLowStockReport();
+          response =
+          await reportService.getLowStockReport();
           break;
+
 
         default:
           return;
+
       }
 
-      console.log(`${tab}:`, response);
 
       setData(response);
-    } catch (error) {
+
+
+    }catch(error){
+
       console.error(error);
-      toast.error("Failed to load report.");
-    } finally {
+
+      toast.error(
+        "Failed to load report."
+      );
+
+
+    }finally{
+
       setLoading(false);
+
     }
+
   };
 
-  useEffect(() => {
+
+
+  useEffect(()=>{
+
     loadReport(activeTab);
-  }, [activeTab]);
+
+  },[activeTab]);
+
+
+
 
   return (
+
     <div className="reports-page">
+
+
       <div className="report-tabs">
-        <button onClick={() => setActiveTab("dashboard")}>Overview</button>
-        <button onClick={() => setActiveTab("sales")}>Sales</button>
-        <button onClick={() => setActiveTab("purchases")}>Purchases</button>
-        <button onClick={() => setActiveTab("inventory")}>Inventory</button>
-        <button onClick={() => setActiveTab("categories")}>Categories</button>
-        <button onClick={() => setActiveTab("suppliers")}>Suppliers</button>
-        <button onClick={() => setActiveTab("low-stock")}>Low Stock</button>
+
+        {
+          tabs.map((tab)=>(
+
+            <button
+
+              key={tab.id}
+
+              className={
+                activeTab === tab.id
+                ? "active"
+                : ""
+              }
+
+              onClick={()=>
+                setActiveTab(tab.id)
+              }
+
+            >
+
+              {tab.label}
+
+            </button>
+
+          ))
+        }
+
       </div>
 
-      {loading && <h3>Loading...</h3>}
 
-      {!loading && activeTab === "dashboard" && (
-        <DashboardSummary data={data || {}} />
-      )}
 
-      {!loading && activeTab === "sales" && (
-        <SalesReport data={data || {}} />
-      )}
+      <div className="report-content">
 
-      {!loading && activeTab === "purchases" && (
-        <PurchaseReport data={data || {}} />
-      )}
 
-      {!loading && activeTab === "inventory" && (
-        <InventoryReport data={Array.isArray(data) ? data : []} />
-      )}
+      {
+        loading && (
 
-      {!loading && activeTab === "categories" && (
-        <CategoryReport data={Array.isArray(data) ? data : []} />
-      )}
+          <div className="report-loading">
 
-      {!loading && activeTab === "suppliers" && (
-        <SupplierReport data={Array.isArray(data) ? data : []} />
-      )}
+            Loading report...
 
-      {!loading && activeTab === "low-stock" && (
-        <LowStockReport data={Array.isArray(data) ? data : []} />
-      )}
+          </div>
+
+        )
+      }
+
+
+
+      {
+        !loading &&
+        activeTab==="dashboard" &&
+        <DashboardSummary
+          data={data || {}}
+        />
+      }
+
+
+
+      {
+        !loading &&
+        activeTab==="sales" &&
+        <SalesReport
+          data={data || {}}
+        />
+      }
+
+
+
+      {
+        !loading &&
+        activeTab==="purchases" &&
+        <PurchaseReport
+          data={data || {}}
+        />
+      }
+
+
+
+      {
+        !loading &&
+        activeTab==="inventory" &&
+        <InventoryReport
+          data={
+            Array.isArray(data)
+            ? data
+            : []
+          }
+        />
+      }
+
+
+
+      {
+        !loading &&
+        activeTab==="categories" &&
+        <CategoryReport
+          data={
+            Array.isArray(data)
+            ? data
+            : []
+          }
+        />
+      }
+
+
+
+      {
+        !loading &&
+        activeTab==="suppliers" &&
+        <SupplierReport
+          data={
+            Array.isArray(data)
+            ? data
+            : []
+          }
+        />
+      }
+
+
+
+      {
+        !loading &&
+        activeTab==="low-stock" &&
+        <LowStockReport
+          data={
+            Array.isArray(data)
+            ? data
+            : []
+          }
+        />
+      }
+
+
+      </div>
+
+
     </div>
+
   );
+
 };
+
 
 export default Reports;

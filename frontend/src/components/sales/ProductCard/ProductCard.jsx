@@ -1,31 +1,71 @@
 import "./ProductCard.css";
+import placeholder from "../../../assets/placeholder.png";
 
-const ProductCard = ({ product, onAdd }) => {
+import {
+  FiShoppingCart,
+} from "react-icons/fi";
+
+const ProductCard = ({
+  product,
+  onAdd,
+}) => {
+  const inStock = product.quantity > 0;
+
   return (
     <div className="product-card">
-      <h3>{product.name}</h3>
 
-      <p>{product.category}</p>
+      <div className="product-image-wrapper">
 
-      <strong>KSh {product.sellingPrice.toLocaleString()}</strong>
+        <img
+          src={product.image || placeholder}
+          alt={product.name}
+          className="product-image"
+        />
 
-      <p>
-  Stock:{" "}
-  <strong
-    style={{
-      color: product.quantity > 0 ? "green" : "red",
-    }}
-  >
-    {product.quantity}
-  </strong>
-</p>
+        <span
+          className={`stock-status ${
+            inStock ? "available" : "out"
+          }`}
+        >
+          {inStock ? "In Stock" : "Out of Stock"}
+        </span>
 
-      <button
-        onClick={() => onAdd(product)}
-        disabled={product.quantity === 0}
-      >
-        Add
-      </button>
+      </div>
+
+      <div className="product-content">
+
+        <small>{product.category}</small>
+
+        <h3>{product.name}</h3>
+
+        <div className="price">
+          KSh{" "}
+          {Number(
+            product.sellingPrice
+          ).toLocaleString()}
+        </div>
+
+        <div className="stock-row">
+
+          <span>
+            Qty: <strong>{product.quantity}</strong>
+          </span>
+
+        </div>
+
+        <button
+          className="add-cart-btn"
+          onClick={() => onAdd(product)}
+          disabled={!inStock}
+        >
+          <FiShoppingCart />
+
+          Add to Cart
+
+        </button>
+
+      </div>
+
     </div>
   );
 };

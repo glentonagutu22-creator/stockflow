@@ -2,144 +2,57 @@
   display: flex;
   flex-direction: column;
   gap: 28px;
-  min-height: 100%;
-  animation: fadeIn 0.35s ease;
 }
-
-/* ===========================
-   Dashboard Header
-=========================== */
 
 .dashboard-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  gap: 20px;
+  align-items: flex-start;
+  gap: 24px;
   flex-wrap: wrap;
 }
 
+.dashboard-badge {
+  display: inline-block;
+  background: #eff6ff;
+  color: #2563eb;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+
 .dashboard-header h1 {
-  margin: 0;
   font-size: 2rem;
-  font-weight: 700;
-  color: #0f172a;
+  color: #111827;
+  margin-bottom: 8px;
 }
 
 .dashboard-header p {
-  margin-top: 8px;
-  font-size: 15px;
-  color: #64748b;
+  color: #6b7280;
+  max-width: 600px;
   line-height: 1.6;
 }
 
-/* ===========================
-   Dashboard Body
-=========================== */
-
 .dashboard-content {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 24px;
-  align-items: start;
-}
-
-.dashboard-side {
   display: flex;
   flex-direction: column;
   gap: 24px;
 }
 
-/* ===========================
-   Reusable Dashboard Cards
-=========================== */
-
-.dashboard-card {
-  background: #ffffff;
-  border-radius: 18px;
-  padding: 24px;
-  border: 1px solid #e2e8f0;
-  box-shadow: 0 8px 30px rgba(15, 23, 42, 0.05);
-  transition: all 0.25s ease;
-}
-
-.dashboard-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 16px 35px rgba(15, 23, 42, 0.08);
-}
-
-/* ===========================
-   Section Titles
-=========================== */
-
-.section-title {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 18px;
-}
-
-.section-title h2 {
-  margin: 0;
-  font-size: 18px;
-  color: #1e293b;
-  font-weight: 600;
-}
-
-.section-title span {
-  color: #2563eb;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: 600;
-}
-
-/* ===========================
-   Loading State
-=========================== */
-
 .dashboard-loading {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 60vh;
+  min-height: 70vh;
   font-size: 18px;
-  color: #2563eb;
-  font-weight: 600;
+  color: #6b7280;
 }
 
-/* ===========================
-   Animation
-=========================== */
+/* Tablet */
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(18px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* ===========================
-   Tablet
-=========================== */
-
-@media (max-width: 1100px) {
-
-  .dashboard-content {
-    grid-template-columns: 1fr;
-  }
-
-}
-
-/* ===========================
-   Mobile
-=========================== */
-
-@media (max-width: 768px) {
-
+@media (max-width: 992px) {
   .dashboard {
     gap: 22px;
   }
@@ -150,59 +63,52 @@
   }
 
   .dashboard-header h1 {
-    font-size: 1.7rem;
+    font-size: 1.8rem;
+  }
+
+  .dashboard-header p {
+    max-width: 100%;
+  }
+}
+
+/* Phone */
+
+@media (max-width: 768px) {
+  .dashboard {
+    gap: 18px;
+  }
+
+  .dashboard-header {
+    gap: 16px;
+  }
+
+  .dashboard-header h1 {
+    font-size: 1.6rem;
   }
 
   .dashboard-header p {
     font-size: 14px;
+    line-height: 1.5;
   }
 
-}
-/* ===========================
-   MAIN CONTENT
-=========================== */
-
-.dashboard-main {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
+  .dashboard-badge {
+    font-size: 12px;
+    padding: 5px 12px;
+  }
 }
 
-/* ===========================
-   LIST ITEMS
-=========================== */
+/* Small Phones */
 
-.dashboard-list-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+@media (max-width: 480px) {
+  .dashboard-header h1 {
+    font-size: 1.4rem;
+  }
 
-  padding: 14px 0;
+  .dashboard-header p {
+    font-size: 13px;
+  }
 
-  border-bottom: 1px solid #f1f5f9;
-}
-
-.dashboard-list-item:last-child {
-  border-bottom: none;
-}
-
-.dashboard-list-item span {
-  color: #334155;
-  font-size: 15px;
-}
-
-.dashboard-list-item strong {
-  color: #2563eb;
-  font-size: 15px;
-}
-
-/* ===========================
-   EMPTY
-=========================== */
-
-.empty-text {
-  color: #94a3b8;
-  font-size: 15px;
-  text-align: center;
-  padding: 25px 0;
+  .dashboard-content {
+    gap: 18px;
+  }
 }

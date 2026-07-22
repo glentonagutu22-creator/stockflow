@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+
 import {
   getSuppliers,
   createSupplier,
@@ -17,111 +18,230 @@ import { toast } from "react-toastify";
 
 import "./Suppliers.css";
 
+
 const Suppliers = () => {
-  const [suppliers, setSuppliers] = useState([]);
-  const [loading, setLoading] = useState(false);
 
-  const [search, setSearch] = useState("");
-  const [page, setPage] = useState(1);
 
-  const [pagination, setPagination] = useState({
-    page: 1,
-    pages: 1,
-    total: 0,
-    limit: 10,
-  });
+const [suppliers,setSuppliers] = useState([]);
 
-  const [showModal, setShowModal] = useState(false);
-  const [editingSupplier, setEditingSupplier] =
-    useState(null);
+const [loading,setLoading] = useState(false);
 
-  const fetchSuppliers = async () => {
-    try {
-      setLoading(true);
+const [search,setSearch] = useState("");
 
-      const response = await getSuppliers({
-        page,
-        search,
-      });
+const [page,setPage] = useState(1);
 
-      setSuppliers(response.data.suppliers);
 
-      setPagination({
-        page: response.data.page,
-        pages: response.data.pages,
-        total: response.data.total,
-      });
+const [pagination,setPagination] = useState({
+page:1,
+pages:1,
+total:0,
+limit:10,
+});
 
-    } catch (error) {
-      console.error(error);
-      toast.error("Failed to load suppliers.");
-    } finally {
-      setLoading(false);
-    }
-  };
 
-  useEffect(() => {
-    fetchSuppliers();
-  }, [page, search]);
+const [showModal,setShowModal] = useState(false);
 
-  const handleCreate = async (formData) => {
-    await createSupplier(formData);
+const [editingSupplier,setEditingSupplier] =
+useState(null);
 
-    toast.success("Supplier created successfully.");
 
-    setShowModal(false);
 
-    fetchSuppliers();
-  };
 
-  const handleUpdate = async (formData) => {
-    await updateSupplier(
-      editingSupplier._id,
-      formData
-    );
+const fetchSuppliers = async()=>{
 
-    toast.success("Supplier updated successfully.");
+try{
 
-    setEditingSupplier(null);
+setLoading(true);
 
-    setShowModal(false);
 
-    fetchSuppliers();
-  };
+const response = await getSuppliers({
+page,
+search,
+});
 
-  const handleDelete = async (id) => {
-    if (
-      !window.confirm(
-        "Delete this supplier?"
-      )
-    )
-      return;
 
-    await deleteSupplier(id);
+setSuppliers(response.data.suppliers);
 
-    toast.success("Supplier deleted.");
 
-    fetchSuppliers();
-  };
+setPagination({
 
-  const openCreateModal = () => {
-    setEditingSupplier(null);
-    setShowModal(true);
-  };
+page:response.data.page,
 
-  const openEditModal = (supplier) => {
-    setEditingSupplier(supplier);
-    setShowModal(true);
-  };
+pages:response.data.pages,
 
-  return (
-    <div className="suppliers-page">
+total:response.data.total,
+
+});
+
+
+
+}catch(error){
+
+console.error(error);
+
+toast.error(
+"Failed to load suppliers."
+);
+
+
+}finally{
+
+setLoading(false);
+
+}
+
+};
+
+
+
+
+useEffect(()=>{
+
+fetchSuppliers();
+
+},[page,search]);
+
+
+
+
+
+const handleCreate = async(data)=>{
+
+try{
+
+await createSupplier(data);
+
+
+toast.success(
+"Supplier created successfully."
+);
+
+
+setShowModal(false);
+
+fetchSuppliers();
+
+
+}catch(error){
+
+toast.error(
+"Failed creating supplier."
+);
+
+}
+
+};
+
+
+
+
+
+const handleUpdate = async(data)=>{
+
+try{
+
+await updateSupplier(
+editingSupplier._id,
+data
+);
+
+
+toast.success(
+"Supplier updated successfully."
+);
+
+
+setEditingSupplier(null);
+
+setShowModal(false);
+
+fetchSuppliers();
+
+
+}catch(error){
+
+toast.error(
+"Failed updating supplier."
+);
+
+}
+
+};
+
+
+
+
+
+const handleDelete = async(id)=>{
+
+
+if(
+!window.confirm(
+"Delete this supplier?"
+)
+
+) return;
+
+
+
+try{
+
+
+await deleteSupplier(id);
+
+
+toast.success(
+"Supplier deleted successfully."
+);
+
+
+fetchSuppliers();
+
+
+
+}catch(error){
+
+toast.error(
+"Failed deleting supplier."
+);
+
+}
+
+
+};
+const openCreateModal = () => {
+  setEditingSupplier(null);
+  setShowModal(true);
+};
+
+
+const openEditModal = (supplier) => {
+  setEditingSupplier(supplier);
+  setShowModal(true);
+};
+
+
+
+
+return (
+  <div className="suppliers-page">
+
+    <div className="page-header">
+      <h1>Suppliers</h1>
+      <p>
+        Manage your suppliers and supplier information.
+      </p>
+    </div>
+
+
+    <div className="suppliers-card">
 
       <SupplierToolbar
         search={search}
         setSearch={setSearch}
         onAdd={openCreateModal}
       />
+
 
       <SupplierTable
         suppliers={suppliers}
@@ -130,30 +250,38 @@ const Suppliers = () => {
         onDelete={handleDelete}
       />
 
+
       <Pagination
         currentPage={pagination.page}
         totalPages={pagination.pages}
         onPageChange={setPage}
       />
 
-      <Modal
-        isOpen={showModal}
-        onClose={() =>
-          setShowModal(false)
-        }
-      >
-        <SupplierForm
-          supplier={editingSupplier}
-          onSubmit={
-            editingSupplier
-              ? handleUpdate
-              : handleCreate
-          }
-        />
-      </Modal>
-
     </div>
-  );
+
+
+    <Modal
+      isOpen={showModal}
+      onClose={() =>
+        setShowModal(false)
+      }
+    >
+      <SupplierForm
+        supplier={editingSupplier}
+        onSubmit={
+          editingSupplier
+            ? handleUpdate
+            : handleCreate
+        }
+      />
+    </Modal>
+
+
+  </div>
+);
+
+
 };
+
 
 export default Suppliers;

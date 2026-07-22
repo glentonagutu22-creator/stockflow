@@ -1,48 +1,71 @@
 import { useEffect, useState } from "react";
 import "./ProductForm.css";
 import { getCategories } from "../../../services/categoryService";
-const ProductForm = ({ initialData = {}, onSubmit }) => {
+
+const emptyForm = {
+  name: "",
+  description: "",
+  category: "",
+  buyingPrice: "",
+  sellingPrice: "",
+  quantity: "",
+  minimumStock: "",
+  unit: "",
+  image: null,
+};
+
+const ProductForm = ({
+  initialData = {},
+  onSubmit,
+}) => {
   const [categories, setCategories] = useState([]);
+  const [formData, setFormData] = useState(emptyForm);
+  const [preview, setPreview] = useState("");
+
   useEffect(() => {
     const fetchCategories = async () => {
-        try {
-            const response = await getCategories({
-                page: 1,
-                limit: 1000,
-            });
+      try {
+        const response = await getCategories({
+          page: 1,
+          limit: 1000,
+        });
 
-            setCategories(response.data.categories);
-        } catch (error) {
-            console.error(error);
-        }
+        setCategories(response.data.categories);
+      } catch (error) {
+        console.error(error);
+      }
     };
 
     fetchCategories();
-}, []);
-  const [formData, setFormData] = useState({
-    name: "",
-    description: "",
-    category: "",
-    buyingPrice: "",
-    sellingPrice: "",
-    quantity: "",
-    minimumStock: "",
-    unit: "",
-    image: "",
-  });
+  }, []);
 
   useEffect(() => {
-    setFormData({
-      name: initialData.name || "",
-      description: initialData.description || "",
-      category: initialData.category || "",
-      buyingPrice: initialData.buyingPrice || "",
-      sellingPrice: initialData.sellingPrice || "",
-      quantity: initialData.quantity || "",
-      minimumStock: initialData.minimumStock || "",
-      unit: initialData.unit || "",
-      image: initialData.image || "",
-    });
+    if (
+      initialData &&
+      Object.keys(initialData).length > 0
+    ) {
+      setFormData({
+        ...emptyForm,
+        name: initialData.name || "",
+        description:
+          initialData.description || "",
+        category: initialData.category || "",
+        buyingPrice:
+          initialData.buyingPrice || "",
+        sellingPrice:
+          initialData.sellingPrice || "",
+        quantity: initialData.quantity || "",
+        minimumStock:
+          initialData.minimumStock || "",
+        unit: initialData.unit || "",
+        image: null,
+      });
+
+      setPreview(initialData.image || "");
+    } else {
+      setFormData(emptyForm);
+      setPreview("");
+    }
   }, [initialData]);
 
   const handleChange = (e) => {
@@ -54,128 +77,242 @@ const ProductForm = ({ initialData = {}, onSubmit }) => {
     }));
   };
 
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+
+    if (!file) return;
+
+    setFormData((prev) => ({
+      ...prev,
+      image: file,
+    }));
+
+    setPreview(URL.createObjectURL(file));
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+
     onSubmit(formData);
   };
 
   return (
-    <form className="product-form" onSubmit={handleSubmit}>
-      <div className="form-group">
-        <label>Product Name</label>
-        <input
-          type="text"
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
-          required
-        />
-      </div>
+    <form
+      className="product-form"
+      onSubmit={handleSubmit}
+    >
+      {/* Product Information */}
 
-      <div className="form-group">
-        <label>Description</label>
-        <textarea
-          name="description"
-          value={formData.description}
-          onChange={handleChange}
-        />
-      </div>
+      <div className="form-section">
 
-      <div className="form-group">
-        <label>Category</label>
-        quired<select
-    name="category"
-    value={formData.category}
-    onChange={handleChange}
->
-    <option value="">Select Category</option>
+        <h3>Product Information</h3>
 
-    {categories.map(category => (
-        <option
-            key={category._id}
-            value={category.name}
-        >
-            {category.name}
-        </option>
-    ))}
-</select>
-        
-      </div>
+        <div className="form-grid">
 
-      <div className="form-row">
-        <div className="form-group">
-          <label>Buying Price</label>
-          <input
-            type="number"
-            name="buyingPrice"
-            value={formData.buyingPrice}
-            onChange={handleChange}
-            required
-          />
+          <div className="form-group">
+
+            <label>Product Name</label>
+
+            <input
+              type="text"
+              name="name"
+              placeholder="Enter product name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+            />
+
+          </div>
+
+          <div className="form-group">
+
+            <label>Category</label>
+
+            <select
+              name="category"
+              value={formData.category}
+              onChange={handleChange}
+              required
+            >
+              <option value="">
+                Select Category
+              </option>
+
+              {categories.map((category) => (
+                <option
+                  key={category._id}
+                  value={category.name}
+                >
+                  {category.name}
+                </option>
+              ))}
+
+            </select>
+
+          </div>
+
         </div>
 
         <div className="form-group">
-          <label>Selling Price</label>
-          <input
-            type="number"
-            name="sellingPrice"
-            value={formData.sellingPrice}
+
+          <label>Description</label>
+
+          <textarea
+            rows="4"
+            name="description"
+            value={formData.description}
             onChange={handleChange}
-            required
+            placeholder="Describe the product..."
           />
+
         </div>
+
       </div>
 
-      <div className="form-row">
-        <div className="form-group">
-          <label>Quantity</label>
-          <input
-            type="number"
-            name="quantity"
-            value={formData.quantity}
-            onChange={handleChange}
-            required
-          />
+      {/* Pricing */}
+
+      <div className="form-section">
+
+        <h3>Pricing</h3>
+
+        <div className="form-grid">
+
+          <div className="form-group">
+
+            <label>Buying Price</label>
+
+            <input
+              type="number"
+              name="buyingPrice"
+              value={formData.buyingPrice}
+              onChange={handleChange}
+              required
+            />
+
+          </div>
+
+          <div className="form-group">
+
+            <label>Selling Price</label>
+
+            <input
+              type="number"
+              name="sellingPrice"
+              value={formData.sellingPrice}
+              onChange={handleChange}
+              required
+            />
+
+          </div>
+
         </div>
 
-        <div className="form-group">
-          <label>Minimum Stock</label>
-          <input
-            type="number"
-            name="minimumStock"
-            value={formData.minimumStock}
-            onChange={handleChange}
-            required
-          />
-        </div>
       </div>
 
-      <div className="form-row">
-        <div className="form-group">
-          <label>Unit</label>
-          <input
-            type="text"
-            name="unit"
-            value={formData.unit}
-            onChange={handleChange}
-            required
-          />
+      {/* Inventory */}
+
+      <div className="form-section">
+
+        <h3>Inventory</h3>
+
+        <div className="form-grid">
+
+          <div className="form-group">
+
+            <label>Quantity</label>
+
+            <input
+              type="number"
+              name="quantity"
+              value={formData.quantity}
+              onChange={handleChange}
+              required
+            />
+
+          </div>
+
+          <div className="form-group">
+
+            <label>Minimum Stock</label>
+
+            <input
+              type="number"
+              name="minimumStock"
+              value={formData.minimumStock}
+              onChange={handleChange}
+              required
+            />
+
+          </div>
+
+          <div className="form-group">
+
+            <label>Unit</label>
+
+            <input
+              type="text"
+              name="unit"
+              placeholder="pcs, kg, litre..."
+              value={formData.unit}
+              onChange={handleChange}
+              required
+            />
+
+          </div>
+
         </div>
 
-        <div className="form-group">
-          <label>Image URL</label>
-          <input
-            type="text"
-            name="image"
-            value={formData.image}
-            onChange={handleChange}
-          />
-        </div>
       </div>
 
-      <button type="submit" className="save-btn">
+      {/* Image */}
+
+      <div className="form-section">
+
+        <h3>Product Image</h3>
+
+        <div className="image-upload">
+
+          {preview ? (
+
+            <img
+              src={preview}
+              alt="Preview"
+              className="image-preview"
+            />
+
+          ) : (
+
+            <div className="upload-placeholder">
+
+              <span>📷</span>
+
+              <p>No image selected</p>
+
+            </div>
+
+          )}
+
+         <label className="upload-btn">
+  Upload Photo
+
+  <input
+    type="file"
+    accept="image/*"
+    onChange={handleImageChange}
+  />
+</label>
+
+        </div>
+
+      </div>
+
+      <button
+        type="submit"
+        className="save-btn"
+      >
         Save Product
       </button>
+
     </form>
   );
 };

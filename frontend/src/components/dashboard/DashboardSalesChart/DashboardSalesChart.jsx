@@ -16,17 +16,50 @@ const DashboardSalesChart = ({ data = [] }) => {
     revenue: item.revenue,
   }));
 
+  const totalRevenue = chartData.reduce(
+    (sum, item) => sum + item.revenue,
+    0
+  );
+
+  const highestRevenue =
+    chartData.length > 0
+      ? Math.max(...chartData.map((d) => d.revenue))
+      : 0;
+
   const formatCurrency = (value) =>
     `KSh ${Number(value).toLocaleString()}`;
 
   return (
-    <div className="dashboard-sales-chart">
+    <section className="dashboard-sales-chart">
 
       <div className="chart-header">
 
         <div>
-          <h2>Sales Revenue</h2>
-          <p>Revenue for the last 7 days</p>
+          <span className="chart-badge">
+            Revenue Analytics
+          </span>
+
+          <h2>Sales Overview</h2>
+
+          <p>Performance over the last 7 days</p>
+        </div>
+
+        <div className="chart-summary">
+
+          <div>
+            <small>Total Revenue</small>
+            <strong>
+              {formatCurrency(totalRevenue)}
+            </strong>
+          </div>
+
+          <div>
+            <small>Highest Day</small>
+            <strong>
+              {formatCurrency(highestRevenue)}
+            </strong>
+          </div>
+
         </div>
 
       </div>
@@ -43,35 +76,37 @@ const DashboardSalesChart = ({ data = [] }) => {
           <LineChart
             data={chartData}
             margin={{
-              top: 10,
+              top: 15,
               right: 20,
-              left: 10,
+              left: 0,
               bottom: 0,
             }}
           >
             <CartesianGrid
-              stroke="#e2e8f0"
+              stroke="#E5E7EB"
               strokeDasharray="4 4"
             />
 
             <XAxis
               dataKey="day"
-              tick={{
-                fill: "#64748b",
-                fontSize: 13,
-              }}
               axisLine={false}
               tickLine={false}
+              tick={{
+                fill: "#6B7280",
+                fontSize: 13,
+              }}
             />
 
             <YAxis
-              tickFormatter={formatCurrency}
-              tick={{
-                fill: "#64748b",
-                fontSize: 13,
-              }}
               axisLine={false}
               tickLine={false}
+              tickFormatter={(value) =>
+                `${value / 1000}k`
+              }
+              tick={{
+                fill: "#6B7280",
+                fontSize: 13,
+              }}
             />
 
             <Tooltip
@@ -79,8 +114,8 @@ const DashboardSalesChart = ({ data = [] }) => {
                 formatCurrency(value)
               }
               contentStyle={{
-                borderRadius: "12px",
-                border: "1px solid #e2e8f0",
+                borderRadius: "14px",
+                border: "1px solid #E5E7EB",
                 boxShadow:
                   "0 10px 25px rgba(0,0,0,.08)",
               }}
@@ -89,21 +124,20 @@ const DashboardSalesChart = ({ data = [] }) => {
             <Line
               type="monotone"
               dataKey="revenue"
-              stroke="#2563eb"
+              stroke="#2563EB"
               strokeWidth={4}
               dot={{
                 r: 4,
-                fill: "#2563eb",
+                fill: "#2563EB",
               }}
               activeDot={{
-                r: 7,
+                r: 8,
               }}
             />
           </LineChart>
         </ResponsiveContainer>
       )}
-
-    </div>
+    </section>
   );
 };
 

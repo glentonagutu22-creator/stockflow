@@ -1,29 +1,78 @@
-.supplier-toolbar{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:15px;
-    margin-bottom:20px;
+.supplier-toolbar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  box-sizing: border-box;
 }
 
-.supplier-toolbar input{
-    flex:1;
-    padding:12px;
-    border:1px solid #ddd;
-    border-radius:8px;
-    outline:none;
+
+.supplier-toolbar input {
+  flex: 1;
+  max-width: 400px;
+  padding: 12px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  font-size: 14px;
+  box-sizing: border-box;
 }
 
-.supplier-toolbar button{
-    padding:12px 18px;
-    border:none;
-    background:#2563eb;
-    color:white;
-    border-radius:8px;
-    cursor:pointer;
-    font-weight:600;
+
+.supplier-toolbar button {
+
+  padding: 12px 20px;
+
+  background: #2563eb;
+
+  color: white;
+
+  border: none;
+
+  border-radius: 10px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  white-space: nowrap;
+
 }
 
-.supplier-toolbar button:hover{
-    background:#1d4ed8;
+
+
+.supplier-toolbar button:hover {
+
+  background:#1d4ed8;
+
+}
+
+
+
+@media(max-width:768px){
+
+  .supplier-toolbar {
+
+    flex-direction: column;
+
+    align-items: stretch;
+
+  }
+
+
+  .supplier-toolbar input {
+
+    max-width:none;
+
+    width:100%;
+
+  }
+
+
+  .supplier-toolbar button {
+
+    width:100%;
+
+  }
+
 }

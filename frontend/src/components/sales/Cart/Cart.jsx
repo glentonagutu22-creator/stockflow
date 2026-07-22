@@ -1,6 +1,13 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
 
+import {
+  FiMinus,
+  FiPlus,
+  FiTrash2,
+  FiShoppingCart,
+} from "react-icons/fi";
+
 import "./Cart.css";
 
 import { useSale } from "../../../context/SaleContext";
@@ -21,7 +28,10 @@ const Cart = ({ onSaleComplete }) => {
   const [amountPaid, setAmountPaid] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const change = Math.max(0, Number(amountPaid || 0) - subtotal);
+  const change = Math.max(
+    0,
+    Number(amountPaid || 0) - subtotal
+  );
 
   const handleCheckout = async () => {
     if (cart.length === 0) {
@@ -32,7 +42,9 @@ const Cart = ({ onSaleComplete }) => {
       paymentMethod === "Cash" &&
       Number(amountPaid || 0) < subtotal
     ) {
-      return toast.error("Amount paid is less than the total.");
+      return toast.error(
+        "Amount paid is less than the total."
+      );
     }
 
     try {
@@ -74,29 +86,42 @@ const Cart = ({ onSaleComplete }) => {
 
   return (
     <div className="cart">
-      <h2>Current Sale</h2>
+
+      <div className="cart-header">
+        <FiShoppingCart />
+        <h2>Current Sale</h2>
+      </div>
 
       {cart.length === 0 ? (
-        <p className="empty-cart">No products selected.</p>
+        <div className="empty-cart">
+          <FiShoppingCart size={40} />
+          <p>Your cart is empty.</p>
+        </div>
       ) : (
         <>
           <div className="cart-items">
+
             {cart.map((item) => (
-              <div className="cart-item" key={item._id}>
+              <div
+                className="cart-item"
+                key={item._id}
+              >
                 <div className="cart-info">
                   <h4>{item.name}</h4>
-                  <p>
+
+                  <small>
                     KSh {item.sellingPrice.toLocaleString()}
-                  </p>
+                  </small>
                 </div>
 
                 <div className="cart-controls">
+
                   <button
                     onClick={() =>
                       decreaseQuantity(item._id)
                     }
                   >
-                    -
+                    <FiMinus />
                   </button>
 
                   <span>{item.cartQuantity}</span>
@@ -106,8 +131,9 @@ const Cart = ({ onSaleComplete }) => {
                       increaseQuantity(item._id)
                     }
                   >
-                    +
+                    <FiPlus />
                   </button>
+
                 </div>
 
                 <div className="cart-total">
@@ -124,55 +150,63 @@ const Cart = ({ onSaleComplete }) => {
                     removeFromCart(item._id)
                   }
                 >
-                  ✕
+                  <FiTrash2 />
                 </button>
               </div>
             ))}
+
           </div>
 
           <div className="cart-summary">
-            <p>
-              <strong>Items:</strong> {totalItems}
-            </p>
 
-            <h3>
-              Total: KSh {subtotal.toLocaleString()}
-            </h3>
-
-            <div className="payment-method">
-              <label>Payment Method</label>
-
-              <select
-                value={paymentMethod}
-                onChange={(e) =>
-                  setPaymentMethod(e.target.value)
-                }
-              >
-                <option value="Cash">Cash</option>
-                <option value="Mpesa">Mpesa</option>
-                <option value="Card">Card</option>
-              </select>
+            <div className="summary-row">
+              <span>Total Items</span>
+              <strong>{totalItems}</strong>
             </div>
+
+            <div className="summary-row total">
+              <span>Total</span>
+
+              <strong>
+                KSh {subtotal.toLocaleString()}
+              </strong>
+            </div>
+
+            <label>Payment Method</label>
+
+            <select
+              value={paymentMethod}
+              onChange={(e) =>
+                setPaymentMethod(
+                  e.target.value
+                )
+              }
+            >
+              <option>Cash</option>
+              <option>Mpesa</option>
+              <option>Card</option>
+            </select>
 
             {paymentMethod === "Cash" && (
               <>
-                <div className="payment-input">
-                  <label>Amount Paid</label>
+                <label>Amount Paid</label>
 
-                  <input
-                    type="number"
-                    min="0"
-                    value={amountPaid}
-                    onChange={(e) =>
-                      setAmountPaid(e.target.value)
-                    }
-                    placeholder="Enter amount paid"
-                  />
-                </div>
+                <input
+                  type="number"
+                  value={amountPaid}
+                  onChange={(e) =>
+                    setAmountPaid(
+                      e.target.value
+                    )
+                  }
+                  placeholder="Enter amount"
+                />
 
-                <div className="change-display">
+                <div className="summary-row">
+                  <span>Change</span>
+
                   <strong>
-                    Change: KSh {change.toLocaleString()}
+                    KSh {change.toLocaleString()}
                   </strong>
                 </div>
               </>
@@ -185,8 +219,9 @@ const Cart = ({ onSaleComplete }) => {
             >
               {loading
                 ? "Processing..."
-                : "Checkout"}
+                : "Complete Sale"}
             </button>
+
           </div>
         </>
       )}

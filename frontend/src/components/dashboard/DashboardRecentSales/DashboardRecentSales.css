@@ -1,146 +1,209 @@
-.dashboard-recent-sales {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
-  border-radius: 18px;
-  padding: 24px;
-  margin-top: 24px;
-  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05);
-  transition: all 0.3s ease;
+.dashboard-recent-sales{
+
+    background:#fff;
+
+    border:1px solid #E5E7EB;
+
+    border-radius:20px;
+
+    padding:24px;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.04);
+
 }
 
-.dashboard-recent-sales:hover {
-  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
+.recent-sales-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:22px;
+
+    gap:20px;
+
+    flex-wrap:wrap;
+
 }
 
-/* ==========================
-   HEADER
-========================== */
+.recent-sales-header h2{
 
-.recent-sales-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 22px;
+    font-size:22px;
+
+    color:#111827;
+
+    margin-bottom:6px;
+
 }
 
-.recent-sales-header h2 {
-  margin: 0;
-  font-size: 20px;
-  color: #0f172a;
-  font-weight: 700;
+.recent-sales-header p{
+
+    color:#6B7280;
+
 }
 
-.recent-sales-header span {
-  font-size: 13px;
-  color: #64748b;
+.sales-count{
+
+    background:#EFF6FF;
+
+    color:#2563EB;
+
+    padding:8px 16px;
+
+    border-radius:999px;
+
+    font-size:13px;
+
+    font-weight:600;
+
 }
 
-/* ==========================
-   TABLE
-========================== */
+.table-wrapper{
 
-.table-wrapper {
-  width: 100%;
-  overflow-x: auto;
+    overflow-x:auto;
+
 }
 
-.table-wrapper::-webkit-scrollbar {
-  height: 6px;
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    min-width:700px;
+
 }
 
-.table-wrapper::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
-  border-radius: 10px;
+thead{
+
+    background:#F9FAFB;
+
 }
 
-.dashboard-recent-sales table {
-  width: 100%;
-  border-collapse: collapse;
-  min-width: 700px;
+th{
+
+    text-align:left;
+
+    padding:16px;
+
+    color:#6B7280;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    border-bottom:1px solid #E5E7EB;
+
 }
 
-.dashboard-recent-sales thead {
-  background: #eff6ff;
+td{
+
+    padding:18px 16px;
+
+    border-bottom:1px solid #F3F4F6;
+
 }
 
-.dashboard-recent-sales th {
-  padding: 15px;
-  text-align: left;
-  font-size: 14px;
-  font-weight: 600;
-  color: #2563eb;
+tbody tr{
+
+    transition:.25s;
+
 }
 
-.dashboard-recent-sales td {
-  padding: 16px 15px;
-  border-bottom: 1px solid #f1f5f9;
-  font-size: 14px;
-  color: #334155;
+tbody tr:hover{
+
+    background:#F9FAFB;
+
 }
 
-.dashboard-recent-sales tbody tr {
-  transition: all 0.2s ease;
+.customer-cell{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
 }
 
-.dashboard-recent-sales tbody tr:hover {
-  background: #f8fafc;
+.customer-avatar{
+
+    width:40px;
+
+    height:40px;
+
+    border-radius:50%;
+
+    background:#2563EB;
+
+    color:#fff;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:13px;
+
+    font-weight:700;
+
 }
 
-/* ==========================
-   AMOUNT
-========================== */
+.amount{
 
-.amount {
-  color: #16a34a;
-  font-weight: 700;
+    color:#16A34A;
+
+    font-weight:700;
+
 }
 
-/* ==========================
-   PAYMENT BADGE
-========================== */
+.payment-badge{
 
-.payment-badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+    background:#ECFDF5;
 
-  padding: 6px 12px;
+    color:#15803D;
 
-  border-radius: 999px;
+    padding:6px 12px;
 
-  background: #dbeafe;
-  color: #2563eb;
+    border-radius:999px;
 
-  font-size: 12px;
-  font-weight: 600;
-  text-transform: capitalize;
+    font-size:12px;
+
+    font-weight:700;
+
 }
 
-/* ==========================
-   EMPTY STATE
-========================== */
+.empty-sales{
 
-.empty-sales {
-  padding: 50px 20px;
-  text-align: center;
-  color: #94a3b8;
-  font-size: 15px;
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    height:220px;
+
+    color:#9CA3AF;
+
 }
 
-/* ==========================
-   MOBILE
-========================== */
+@media(max-width:768px){
 
-@media (max-width: 768px) {
+.dashboard-recent-sales{
 
-  .dashboard-recent-sales {
-    padding: 18px;
-  }
+padding:18px;
 
-  .recent-sales-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 6px;
-  }
+}
+
+.recent-sales-header{
+
+flex-direction:column;
+
+align-items:flex-start;
+
+}
 
 }

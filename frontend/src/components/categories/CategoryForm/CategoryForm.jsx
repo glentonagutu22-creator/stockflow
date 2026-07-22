@@ -12,75 +12,159 @@ const CategoryForm = ({
   onSubmit,
   onCancel,
 }) => {
-  const [formData, setFormData] = useState(initialState);
+
+  const [formData, setFormData] =
+    useState(initialState);
+
 
   useEffect(() => {
+
     if (initialData) {
-      setFormData(initialData);
+
+      setFormData({
+        name: initialData.name || "",
+        description:
+          initialData.description || "",
+        status:
+          initialData.status || "active",
+      });
+
     } else {
+
       setFormData(initialState);
+
     }
+
   }, [initialData]);
 
+
+
   const handleChange = (e) => {
+
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value,
+      [e.target.name]:
+        e.target.value,
     });
+
   };
+
+
 
   const handleSubmit = (e) => {
+
     e.preventDefault();
+
     onSubmit(formData);
+
   };
 
+
+
   return (
+
     <form
       className="category-form"
       onSubmit={handleSubmit}
     >
+
       <h2>
-        {initialData ? "Edit Category" : "Add Category"}
+        {initialData
+          ? "Edit Category"
+          : "Add Category"}
       </h2>
 
-      <input
-        name="name"
-        placeholder="Category name"
-        value={formData.name}
-        onChange={handleChange}
-        required
-      />
 
-      <textarea
-        name="description"
-        placeholder="Description"
-        value={formData.description}
-        onChange={handleChange}
-      />
+      <div className="category-form-group">
 
-      <select
-        name="status"
-        value={formData.status}
-        onChange={handleChange}
-      >
-        <option>Active</option>
-        <option>Inactive</option>
-      </select>
+        <label>
+          Category Name
+        </label>
+
+        <input
+          name="name"
+          placeholder="Enter category name"
+          value={formData.name}
+          onChange={handleChange}
+          required
+        />
+
+      </div>
+
+
+
+      <div className="category-form-group">
+
+        <label>
+          Description
+        </label>
+
+        <textarea
+          name="description"
+          rows="4"
+          placeholder="Enter description"
+          value={formData.description}
+          onChange={handleChange}
+        />
+
+      </div>
+
+
+
+      <div className="category-form-group">
+
+        <label>
+          Status
+        </label>
+
+        <select
+          name="status"
+          value={formData.status}
+          onChange={handleChange}
+        >
+
+          <option value="active">
+            Active
+          </option>
+
+          <option value="inactive">
+            Inactive
+          </option>
+
+        </select>
+
+      </div>
+
+
 
       <div className="category-form-actions">
-        <button type="submit">
-          Save
+
+
+        <button
+          type="submit"
+          className="save-category-btn"
+        >
+          Save Category
         </button>
+
+
 
         <button
           type="button"
+          className="cancel-category-btn"
           onClick={onCancel}
         >
           Cancel
         </button>
+
+
       </div>
+
+
     </form>
+
   );
 };
+
 
 export default CategoryForm;

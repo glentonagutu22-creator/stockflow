@@ -8,59 +8,107 @@ const SupplierTable = ({
   onDelete,
 }) => {
 
-  if (loading) {
-    return (
-      <p className="table-message">
-        Loading suppliers...
-      </p>
-    );
-  }
 
-  if (!suppliers.length) {
-    return (
-      <p className="table-message">
-        No suppliers found.
-      </p>
-    );
-  }
+if(loading){
 
-  return (
-    <div className="supplier-table-wrapper">
+return (
 
-      <table className="supplier-table">
+<p className="table-message">
 
-        <thead>
+Loading suppliers...
 
-          <tr>
-            <th>Code</th>
-            <th>Business</th>
-            <th>Contact Person</th>
-            <th>Phone</th>
-            <th>Email</th>
-            <th>Balance</th>
-            <th>Status</th>
-            <th>Actions</th>
-          </tr>
+</p>
 
-        </thead>
+);
 
-        <tbody>
+}
 
-          {suppliers.map((supplier) => (
-            <SupplierRow
-              key={supplier._id}
-              supplier={supplier}
-              onEdit={onEdit}
-              onDelete={onDelete}
-            />
-          ))}
 
-        </tbody>
 
-      </table>
+if(!suppliers.length){
 
-    </div>
-  );
+return (
+
+<p className="table-message">
+
+No suppliers found.
+
+</p>
+
+);
+
+}
+
+
+
+return (
+
+<div className="supplier-table-wrapper">
+
+
+<table className="supplier-table">
+
+
+<thead>
+
+<tr>
+
+<th>Code</th>
+
+<th>Business</th>
+
+<th>Contact Person</th>
+
+<th>Phone</th>
+
+<th>Email</th>
+
+<th>Balance</th>
+
+<th>Status</th>
+
+<th>Actions</th>
+
+</tr>
+
+</thead>
+
+
+
+<tbody>
+
+{
+
+suppliers.map((supplier)=>(
+
+<SupplierRow
+
+key={supplier._id}
+
+supplier={supplier}
+
+onEdit={onEdit}
+
+onDelete={onDelete}
+
+/>
+
+))
+
+}
+
+</tbody>
+
+
+
+</table>
+
+
+</div>
+
+);
+
 };
+
 
 export default SupplierTable;

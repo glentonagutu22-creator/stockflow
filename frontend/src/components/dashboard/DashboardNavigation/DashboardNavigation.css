@@ -1,85 +1,106 @@
 .dashboard-navigation {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14px;
-  margin: 10px 0 28px;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 16px;
+  width: 100%;
+  margin-bottom: 24px;
 }
-
-/* ==========================
-   QUICK ACTION BUTTON
-========================== */
 
 .nav-button {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+
   gap: 10px;
 
-  min-height: 48px;
-  padding: 0 18px;
+  width: 100%;
+  min-height: 110px;
 
-  background: #2563eb;
-  color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
 
-  border: none;
-  border-radius: 14px;
+  background: #ffffff;
+  color: #1f2937;
+
+  cursor: pointer;
 
   font-size: 14px;
   font-weight: 600;
 
-  cursor: pointer;
-
   transition: all 0.25s ease;
-  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.18);
+
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
 }
 
 .nav-button:hover {
-  background: #1d4ed8;
-  transform: translateY(-3px);
-  box-shadow: 0 14px 28px rgba(37, 99, 235, 0.25);
-}
+  background: #2563eb;
+  color: #ffffff;
 
-.nav-button:active {
-  transform: scale(0.98);
+  transform: translateY(-3px);
+
+  box-shadow: 0 12px 25px rgba(37, 99, 235, 0.25);
 }
 
 .nav-icon {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 20px;
+
+  font-size: 28px;
 }
 
-/* ==========================
-   TABLET
-========================== */
+/* Large Tablets */
 
-@media (max-width: 992px) {
+@media (max-width: 1200px) {
 
   .dashboard-navigation {
-    gap: 12px;
-  }
-
-  .nav-button {
-    flex: 1 1 calc(50% - 12px);
+    grid-template-columns: repeat(4, 1fr);
   }
 
 }
 
-/* ==========================
-   PHONE
-========================== */
+/* Tablets */
 
 @media (max-width: 768px) {
 
   .dashboard-navigation {
-    flex-direction: column;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
   }
 
   .nav-button {
-    width: 100%;
-    justify-content: flex-start;
-    padding: 14px 18px;
+    min-height: 95px;
+    font-size: 13px;
+  }
+
+  .nav-icon {
+    font-size: 24px;
+  }
+
+}
+
+/* Phones */
+
+@media (max-width: 480px) {
+
+  .dashboard-navigation {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+
+  .nav-button {
+    min-height: 80px;
+
+    padding: 10px 6px;
+
+    border-radius: 14px;
+
+    font-size: 12px;
+  }
+
+  .nav-icon {
+    font-size: 20px;
   }
 
 }

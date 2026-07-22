@@ -3,12 +3,30 @@ import "./DashboardRecentSales.css";
 const DashboardRecentSales = ({
   sales = [],
 }) => {
+  const getInitials = (name) => {
+    if (!name) return "W";
+
+    return name
+      .split(" ")
+      .map((word) => word[0])
+      .join("")
+      .toUpperCase();
+  };
+
   return (
-    <div className="dashboard-recent-sales">
+    <section className="dashboard-recent-sales">
 
       <div className="recent-sales-header">
-        <h2>Recent Sales</h2>
-        <span>Latest Transactions</span>
+
+        <div>
+          <h2>Recent Sales</h2>
+          <p>Latest completed transactions</p>
+        </div>
+
+        <span className="sales-count">
+          {sales.length} Sales
+        </span>
+
       </div>
 
       {sales.length === 0 ? (
@@ -22,49 +40,69 @@ const DashboardRecentSales = ({
 
             <thead>
               <tr>
-                <th>Sale No.</th>
+                <th>Sale</th>
                 <th>Customer</th>
-                <th>Amount</th>
                 <th>Payment</th>
+                <th>Amount</th>
                 <th>Date</th>
               </tr>
             </thead>
 
             <tbody>
 
-              {sales.map((sale) => (
-                <tr key={sale._id}>
+              {sales.map((sale) => {
 
-                  <td>{sale.saleNumber}</td>
+                const customer =
+                  sale.customerName ||
+                  "Walk-in Customer";
 
-                  <td>
-                    {sale.customerName ||
-                      "Walk-in Customer"}
-                  </td>
+                return (
 
-                  <td className="amount">
-                    KSh{" "}
-                    {Number(
-                      sale.totalAmount
-                    ).toLocaleString()}
-                  </td>
+                  <tr key={sale._id}>
 
-                  <td>
+                    <td>
+                      <strong>{sale.saleNumber}</strong>
+                    </td>
 
-                    <span className="payment-badge">
-                      {sale.paymentMethod}
-                    </span>
+                    <td>
 
-                  </td>
+                      <div className="customer-cell">
 
-                  <td>
-                    {new Date(
-                      sale.createdAt
-                    ).toLocaleDateString()}
-                  </td>
+                        <div className="customer-avatar">
+                          {getInitials(customer)}
+                        </div>
 
-                </tr>
-              ))}
+                        <span>{customer}</span>
+
+                      </div>
+
+                    </td>
+
+                    <td>
+
+                      <span className="payment-badge">
+                        {sale.paymentMethod}
+                      </span>
+
+                    </td>
+
+                    <td className="amount">
+                      KSh{" "}
+                      {Number(
+                        sale.totalAmount
+                      ).toLocaleString()}
+                    </td>
+
+                    <td>
+                      {new Date(
+                        sale.createdAt
+                      ).toLocaleDateString()}
+                    </td>
+
+                  </tr>
+
+                );
+              })}
 
             </tbody>
 
@@ -73,7 +111,7 @@ const DashboardRecentSales = ({
         </div>
       )}
 
-    </div>
+    </section>
   );
 };
 
