@@ -12,7 +12,7 @@ import ProtectedRoute from "./routes/ProtectedRoute";
 import AppLayout from "./components/layout/AppLayout";
 
 /* Pages */
-import ReceiptSettings from "./pages/settings/ReceiptSettings";
+import ReceiptSettings from "./pages/Settings/ReceiptSettings";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import Settings from "./pages/Settings/Settings";
