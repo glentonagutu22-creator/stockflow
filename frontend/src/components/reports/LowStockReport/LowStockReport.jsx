@@ -38,14 +38,15 @@ const LowStockReport = ({ data }) => {
             {
               products.length > 0 ? (
 
-                products.map((product)=>(
-
-                  <tr
-                    key={
-                      product._id ||
-                      product.sku
-                    }
-                  >
+               
+products.map((product, index) => (
+  <tr
+    key={
+      product._id ||
+      product.productId ||
+      `${product.name}-${index}`
+    }
+  >
 
                     <td>
                       {product.sku}

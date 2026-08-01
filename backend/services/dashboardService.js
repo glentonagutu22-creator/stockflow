@@ -10,9 +10,11 @@ const getDashboardStats = async (userId) => {
   });
 
   const lowStock = await Product.countDocuments({
-    createdBy: userId,
-    quantity: { $lte: 5 },
-  });
+  createdBy: userId,
+  $expr: {
+    $lte: ["$quantity", "$minimumStock"],
+  },
+});
 
   // Today's date range
   const today = new Date();
@@ -37,9 +39,11 @@ const getDashboardStats = async (userId) => {
   .select(
     "saleNumber customerName totalAmount paymentMethod createdAt"
   );
-  const lowStockProducts = await Product.find({
+ const lowStockProducts = await Product.find({
   createdBy: userId,
-  quantity: { $lte: 5 },
+  $expr: {
+    $lte: ["$quantity", "$minimumStock"],
+  },
 })
   .sort({ quantity: 1 })
   .limit(5)

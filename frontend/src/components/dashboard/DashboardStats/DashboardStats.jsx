@@ -44,7 +44,7 @@ const DashboardStats = ({ stats = {} }) => {
     },
     {
       title: "Low Stock",
-      value: stats.lowStockProducts ?? stats.lowStock ?? 0,
+      value:  stats.lowStock ?? 0,
       subtitle: "Items needing restock",
       icon: <MdWarningAmber />,
       color: "red",

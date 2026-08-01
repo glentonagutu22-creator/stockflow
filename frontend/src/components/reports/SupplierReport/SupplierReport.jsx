@@ -36,13 +36,14 @@ const SupplierReport = ({ data }) => {
             {
               suppliers.length > 0 ? (
 
-                suppliers.map((supplier)=>(
+                suppliers.map((supplier, index) => (
 
                   <tr
                     key={
-                      supplier._id ||
-                      supplier.supplierId
-                    }
+  supplier._id ||
+  supplier.supplierId ||
+  `${supplier.supplierName}-${index}`
+}
                   >
 
                     <td>

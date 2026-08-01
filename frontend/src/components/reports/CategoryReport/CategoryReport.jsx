@@ -37,13 +37,13 @@ const CategoryReport = ({ data }) => {
             {
               categories.length > 0 ? (
 
-                categories.map((category)=>(
+                categories.map((category, index) => (
 
                   <tr
                     key={
-                      category._id ||
-                      category.category
-                    }
+  category._id ||
+  `${category.category}-${index}`
+}
                   >
 
                     <td>

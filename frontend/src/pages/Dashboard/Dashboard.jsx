@@ -36,10 +36,14 @@ const Dashboard = () => {
         ]);
 
         setStats({
-          ...statsData,
-          lowStockProductsList:
-            statsData.lowStockProducts || [],
-        });
+  totalProducts: statsData.totalProducts,
+  lowStock: statsData.lowStock,
+  todaysSales: statsData.todaysSales,
+  todayRevenue: statsData.todayRevenue,
+  totalRevenue: statsData.totalRevenue,
+  recentSales: statsData.recentSales || [],
+  lowStockProductsList: statsData.lowStockProducts || [],
+});
 
         setChartData(salesChart);
       } catch (error) {
@@ -59,7 +63,8 @@ const Dashboard = () => {
       </div>
     );
   }
-
+console.log("Dashboard Stats:", stats);
+console.log("Chart Data:", chartData);
   return (
     <div className="dashboard">
 
